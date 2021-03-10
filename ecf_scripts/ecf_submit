@@ -1,0 +1,570 @@
+#!/bin/ksh
+#==========================================================================
+##.TITLE   EMOS - METAPS utilities
+##.NAME    ecflow_submit
+##.SECTION EMOS
+##.AUTHOR  map
+##.DATE    2011-11-09
+##.VERSION 1.1
+##.FILE    ~emos/bin/ecflow_submit
+##.ORIGIN  smssubmit
+#==========================================================================
+##$  smssubmit user host file
+##
+##?  Decides according to host argument which submit method to use.
+
+# Modifications:
+if [[ $ARCH = linux ]]; then
+  export PATH=$PATH:/usr/local/apps/sge/bin/lx24-x86
+else
+  alias qsub=sge_qsub
+fi
+export SGE_ROOT=/usr/local/apps/sge
+
+# Error handling and cleanup
+# set -x
+CP_SUB() {
+set -x
+if [[ ! -z $smsjobout ]] ; then
+  dist_path=`dirname $smsjobout`
+else
+  dist_path=`dirname $smsjobsub`
+fi
+# 
+if [[ ! -d $dist_path ]] ; then
+  dist_fname=`basename $smsjobsub`
+  rcp $smsjobsub $user@$host:$dist_path/$dist_fname || :
+fi
+
+}
+
+ERROR() { 
+  err=$?
+  echo "ERROR $0: $* $? - Exiting."
+  # CP_SUB
+
+  [[ -f $smsjobsub ]] && grep "has been submitted" $smsjobsub && exit 0
+# Unable to run job: failed receiving gdi request # TBD OK
+  exit $err
+}
+
+#--------------------------------------------------------------------------
+#  Check the number of arguments
+#--------------------------------------------------------------------------
+
+#set -xv
+set -x
+
+if [[ $# -lt 3 ]] ; then
+  echo "usage: $0 [ -n node_suffix ] <user> <host> file "
+  echo "example: $0 emos leda task.job1"
+  echo "while node_suffix is empty, host-batch node is the target, "
+  echo "      else \$node\$nodesuffix is the replacement target"
+  exit 1
+fi
+
+node_suffix=""
+smsjobout=""
+
+while getopts n:o: opt
+do
+    case $opt in
+      n) node_suffix="$OPTARG" ;;
+      o) smsjobout="$OPTARG" ;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+user=$1
+host=$2
+file="$3"
+outf="$4"
+
+smsjobsub="${file}.sub"
+
+#--------------------------------------------------------------------------
+#  Parameters for ecrcmd
+#--------------------------------------------------------------------------
+TIMEOUT=180  # timeout period (seconds)
+if [[ $file = @(/vol/emos_nc/output/*|/vol/emos/output/tigge*) ]] ; then
+# gpfs waiters prb, avoid zombies, and multiple false alarms
+  TIMEOUT=600
+fi
+
+#--------------------------------------------------------------------------
+#  File must exists!
+#--------------------------------------------------------------------------
+
+if [[ ! -f $file ]] ; then
+  echo "$0: File $file not found?"
+  exit 1
+fi
+
+#--------------------------------------------------------------------------
+# determine queuing system from hostname
+# (can be replaced by a more refined method later...)
+#--------------------------------------------------------------------------
+
+hostname=$(hostname)
+
+case $host in
+  happ | happ2 | celeborn | elrond | altariel | frodo | bilbo | \
+    belegorn | boromir | denethor | faramir | hallas | acq | pp1 | \
+    diss | acq2 | pp2 | acq3 | pp3 ) type=pbs ;;
+
+  swarm | linux_cluster | lxa | lxb | lxab ) type=sge_qsub ;;
+
+  ecgate | ecgate1 | ecga1 | hpce | hpcf | c1a | c1b | hpc1a | hpc1b )
+    type=ll ;;
+
+  $hostname | localhost | diomedes | ariel | osiris | adam | lenny | \
+    infoboard ) type=local ;;
+
+  datasvc | wedit | indigo | cassini | suse91 | stratos | katana | \
+	vali | mordred | ablamor | ibis | pikachu | lenny | anubis | \
+	opensuse113 | ariadne | class0* ) type=ssh ;; 
+
+  * ) type=rsh ;;
+esac
+
+#--------------------------------------------------------------------------
+# determine job file type and output directory
+#--------------------------------------------------------------------------
+
+egrep -v 'smsmicro' $file | \
+    grep -v "SMSNAME=%SMSNAME%" | \
+    sed -e "s:QSUB -o :QSUB -o $outf #:" > ${file}__
+mv -f ${file}__ ${file}
+
+output="$outf"
+if egrep -i "^#.*QSUB " $file > /dev/null ; then
+  jtype=nqs
+  # output=`egrep -i "^#.*QSUB -o" $file | cut -d" " -f 4 | head -1`
+
+elif egrep -i "^#.*@.*queue" $file > /dev/null ; then
+  jtype=ll
+  # output=`egrep -i "^#.*@.*output" $file | cut -d"=" -f 2 | head -1`
+  # [[ $output = /dev/null ]] && output=`egrep -i "^#.*QSUB -o" $file | cut -d" " -f 4 | head -1`
+
+elif egrep -i "^#.*PBS " $file > /dev/null ; then
+  jtype=pbs
+
+elif [[ $host = @(linux_cluster|lxa|lxb|lxab|swarm) ]] ; then
+  jtype=sge_qsub
+  # output=`egrep -i "^#.*-o" $file | cut -d" " -f 3 | head -1`
+
+else
+  jtype=sh
+  # output=`egrep -i "^#.*-o" $file | cut -d" " -f 3 | head -1`
+  # [[ $output = /dev/null ]] && output=`egrep -i "^#.@*output" $file | cut -d" " -f 4 | head -1`
+
+fi
+[[ "$output" = "" ]] || outputdir=`dirname $output`
+
+#==========================================================================
+if [[ $host = @(c1a|c1b|hpc1a|hpc1b) ]] ; 
+then
+  file="/ws$file"
+  if [[ $node_suffix = "" ]] ; then
+    host="${host}-batch"
+    # host="${host}"
+  else
+    host="${host}${node_suffix}"
+  fi
+fi
+
+case $type in
+#==========================================================================
+# Submit to hp using PBS
+  pbs )
+#==========================================================================
+
+# get queue-name, job-name
+if [[ $jtype = nqs ]] ; then
+  queue=`grep 'QSUB -q ' $file | cut -d" " -f 4 | head -1`
+  jname=`grep 'QSUB -r ' $file | cut -d" " -f 4 | head -1`
+
+elif [[ $jtype = ll ]] ; then
+  queue=`egrep '^#.*@.*class.*=' $file | cut -d"=" -f 2 | head -1`
+  jname=`egrep '^#.*@.*job_name.*=' $file | cut -d"=" -f 2 | head -1`
+
+elif [[ $jtype != pbs ]] ; then
+  ERROR "No conversion available for these types ($jtype -> $type)."
+fi
+
+#--------------------------------------------------------------------------
+#  Create the script (${file}__) that will contain the PBS directives
+#--------------------------------------------------------------------------
+
+if [[ $jtype != pbs ]] ; then
+
+cat > ${file}__ <<- EOF
+	#PBS -S /bin/ksh
+	#PBS -N $jname
+	#PBS -V
+	#PBS -o /dev/null
+	#PBS -e /dev/null
+	#PBS -j oe
+	#PBS -u $user
+	#PBS -q $queue
+
+EOF
+
+  egrep -v '^#.*QSUB -|^:$|^#.*@' $file >> ${file}__
+
+  mv -f ${file}__ ${file}
+
+fi
+
+#--------------------------------------------------------------------------
+# Remote shell to $host and submit from there
+#--------------------------------------------------------------------------
+
+ecrcmd --timeout=$TIMEOUT < $file $user@$host -lc /usr/local/apps/propbs/bin/pbsqsub -f $file > $smsjobsub 2>&1 || ERROR "Failed to submit job to PBS. " 
+
+  ;;
+#==========================================================================
+# Submit to vpp using NQS
+  vppnqs )
+#==========================================================================
+
+if [[ $jtype = ll ]] ; then
+  /home/ma/emos/bin/ll2nqs.pl $file ${file}__ || ERROR "Conversion ll2nqs.pl failed."
+  mv -f ${file}__ $file
+
+elif [[ $jtype != nqs ]] ; then
+  ERROR "No conversion available for these types ($jtype -> $type)."
+elif [[ $jtype = nqs ]] ; then
+  grep -v "QSUB -p" $file | grep -v "QSUB -lh" > ${file}__
+  mv -f ${file}__ $file
+fi
+  
+#--------------------------------------------------------------------------
+#  Create the output directory if it can be found
+#--------------------------------------------------------------------------
+
+if [[ "$outputdir" != "" ]] ; then
+  # don't worry about output directory
+  rsh $host -l $user mkdir -m 775 -p $outputdir || /bin/true
+fi
+
+#--------------------------------------------------------------------------
+#  Send the file using qsub
+#  If send failed, sleep a while and try again, until maximum number of
+#  tries.
+#--------------------------------------------------------------------------
+
+rsh $host -l $user /usr/local/bin/vppqsub < $file | grep -i submitted > $smsjobsub 2>&1  || ERROR "Failed to submit $file." 
+
+  ;;
+#==========================================================================
+  sge_qsub ) # swarm linux cluster 
+
+
+# get queue-name, job-name
+if [[ $jtype = nqs ]] ; then
+  queue=`grep 'QSUB -q ' $file | cut -d" " -f 4 | head -1`
+  jname=`grep 'QSUB -r ' $file | cut -d" " -f 4 | head -1`
+  output=`grep 'QSUB -o ' $file | cut -d" " -f 4 | head -1`
+
+elif [[ $jtype = ll ]] ; then
+  queue=`egrep '^#.*@.*class.*=' $file | cut -d"=" -f 2 | head -1`
+  jname=`egrep '^#.*@.*job_name.*=' $file | cut -d"=" -f 2 | head -1`
+  output=`egrep '^#.*@.*output.*=' $file | cut -d"=" -f 2 | head -1`
+
+elif [[ $jtype != sge_qsub ]] ; then
+  ERROR "No conversion available for these types ($jtype -> $type)."
+fi
+
+#--------------------------------------------------------------------------
+#  Create the script (${file}__) that will contain the PBS directives
+#--------------------------------------------------------------------------
+
+if [[ $jtype != sge_qsub ]] ; then
+
+  queue=`grep 'QSUB -q ' $file | cut -d" " -f 4 | head -1`
+
+RUNSHELL=/bin/ksh 
+
+cat > ${file}__ <<- EOF
+#\$ -S $RUNSHELL
+#\$ -N ${jname}
+#\$ -V
+#\$ -o $output
+#\$ -j y
+#\$ -u $user
+#\$ -q $queue
+
+EOF
+
+  egrep -v '^#.*QSUB -|^:$|^#.*@' $file >> ${file}__
+
+  mv -f ${file}__ ${file}
+
+fi
+
+    mkdir -m 775 -p $outputdir || /bin/true
+    if [[ $host = @(lxa|lxb|lxab) ]] ; then
+	# cat $file | ssh $host qsub -notify > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+	  cat $file | ssh $host /usr/local/apps/sge/sge6_2u5/bin/lx24-amd64/qsub -notify > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+    elif [[ $HOST = @(ibis|pikachu) ]] ; then
+      cat $file | rsh drn01 SGE_ROOT=/usr/local/apps/sge /usr/local/apps/sge/bin/lx24-amd64/qsub -notify $file > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+    elif [[ -f /usr/local/share/sge_qsub ]] ; then
+      /usr/local/share/sge_qsub -notify $file > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+    else
+      cat $file | ssh drn01 /usr/local/apps/sge/bin/lx24-amd64/qsub -notify $file > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+    fi
+
+    ;;
+
+#==========================================================================
+# Submit to other workstation using NQS
+  nqs )
+#==========================================================================
+
+#--------------------------------------------------------------------------
+#  Create the script (${file}__) that will run the qsub
+#--------------------------------------------------------------------------
+
+cat > ${file}__ <<- EOF
+	#!/bin/ksh
+
+	unset WAITQUEUE
+	set -e
+EOF
+
+#  Create the output directory if it was found
+if [[ "$outputdir" != "" ]] ; then
+    echo "mkdir -m 775 -p $outputdir || /bin/true" >> ${file}__
+fi
+
+# qsub statement
+echo "/usr/local/share/qsub < ${file}" >> ${file}__
+
+#
+#  Create the real request
+#
+grep -v "QSUB -A" $file | grep -v "QSUB -lh" | grep -v "QSUB -p" | grep -v "QSUB -u" > ${file}__.qsub
+mv -f ${file}__.qsub ${file}
+
+#--------------------------------------------------------------------------
+# Remote shell to $host and submit from there
+#--------------------------------------------------------------------------
+chmod +x ${file}__
+rsh $host -l $user -n "${file}__" > $smsjobsub 2>&1 || ERROR "Job submission failed (${file}__)." 
+
+sleep 10
+/bin/rm -f ${file}__
+
+  ;;
+#==========================================================================
+# Submit to IBM server using loadleveler
+  ll )
+#==========================================================================
+
+if [[ $jtype = nqs ]] ; then
+  #
+  #  Create the real request
+  #
+  /home/ma/emos/bin/nqs2ll.pl $host $file ${file}__ || ERROR "Conversion nqs2ll.pl failed."
+  mv -f ${file}__ ${file}
+
+elif [[ $jtype != ll ]] ; then
+  ERROR "No conversion available for these types ($jtype -> $type)."
+fi
+#--------------------------------------------------------------------------
+# Remote shell to $host and submit from there
+#--------------------------------------------------------------------------
+
+if [[ $host = ecga* ]] ; then
+  cat $file | grep -v "# @ ec_smt=" > ${file}__; mv ${file}__ $file
+  ecrcmd --timeout=$TIMEOUT < $file $user@$host -lc "unset WAITQUEUE ; export LL_NOFILTER=1 ; /usr/lpp/LoadL/full/bin/llsubmit -" > $smsjobsub 2>&1 || ERROR "Failed to submit job to LoadLeveler." 
+elif [[ $host = @(c1a*|c1b*|hpc1a|hpc1b) ]] ; then
+  if [[ $user = emos ]]; then
+    submode="-c"   # without user profile
+  else
+    submode="-lc"
+  fi
+  ecrcmd --timeout=$TIMEOUT < $file $user@${host} $submode "unset WAITQUEUE ; /usr/lpp/LoadL/full/bin/llsubmit - 2>&1 " > $smsjobsub 2>&1 || ERROR "Failed to submit job to LoadLeveler. $?" 
+else
+  ecrcmd --timeout=$TIMEOUT < $file $user@$host -lc "unset WAITQUEUE ; /usr/lpp/LoadL/full/bin/llsubmit -" > $smsjobsub 2>&1 || ERROR "Failed to submit job to LoadLeveler." 
+fi
+
+  ;;
+
+#==========================================================================
+# Submit using ssh
+#==========================================================================
+  ssh )
+
+  cmd="ssh $user@$host"
+
+	if [[ "$outputdir" != "" ]] ; then
+		$cmd mkdir -m 775 -p $outputdir 2>&1 || /bin/true
+	fi
+
+	if [[ -d $outputdir ]] ; then
+		chmod 775 $outputdir || /bin/true
+	fi
+	
+
+	RUNSHELL=/bin/ksh
+
+	#
+	#  Add the header with requested shell
+	#
+
+	cat > ${file}__ <<- EOF
+#!$RUNSHELL
+EOF
+
+  stal="standalone"
+  case $host in
+    osiris | indigo | cassini | suse91 | stratos | katana | ablamor | mordred | ibis | pikachu | lenny | anubis | opensuse113 | ariadne | class0* )
+	    stal=/usr/local/apps/sms/bin/standalone
+      echo ". /home/ma/emos/.profile" >> ${file}__ 
+	;;
+    wedit) 
+      stal=/usr/local/bin/standalone 
+  ;;
+  esac
+
+	#
+	#  Add the real request removing all qsub statements
+	#
+
+	if [[ $jtype = ll ]] ; then
+	  egrep -v '^#.*@|^#!|^:$' $file >> ${file}__
+	elif [[ $jtype = nqs ]] ; then
+	  egrep -v '^#.*QSUB|^#!|^:$' $file >> ${file}__
+	elif [[ $jtype = pbs ]] ; then
+	  egrep -v '^#.*PBS|^#!|^:$' $file >> ${file}__
+	fi
+
+	#
+	#  Submit the job
+
+	$cmd "$stal -o $output -s $RUNSHELL " < ${file}__ > $smsjobsub 2>&1 || ERROR "Job submission to ssh standalone failed." 
+
+  ;;
+
+#==========================================================================
+# Submit to any other workstation using rsh standalone or
+# submit to local workstation using standalone
+  rsh | local )
+#==========================================================================
+
+if [[ $type = local ]] ; then
+  cmd=""
+else
+  cmd="rsh $host -l $user"
+fi
+   
+if [[ "$outputdir" != "" ]] ; then
+  $cmd mkdir -m 775 -p $outputdir 2>&1 || /bin/true
+fi
+
+RUNSHELL=/bin/ksh
+
+#
+#  Add the header with requested shell
+#
+
+cat > ${file}__ <<- EOF
+	#!$RUNSHELL
+EOF
+
+  echo ". /home/ma/emos/.profile" >> ${file}__ 
+
+#
+#  Add the real request removing all qsub statements
+#
+
+if [[ $jtype = ll ]] ; then
+  egrep -v '^#.*@|^#!|^:$' $file >> ${file}__
+
+elif [[ $jtype = nqs ]] ; then
+  egrep -v '^#.*QSUB|^#!|^:$' $file >> ${file}__
+
+elif [[ $jtype = pbs ]] ; then
+  egrep -v '^#.*PBS|^#!|^:$' $file >> ${file}__
+
+elif [[ $type = local ]] ; then
+ cat $file >> ${file}__
+
+elif [[ $type = rsh ]] ; then
+ cat $file >> ${file}__
+
+fi
+
+mv -f ${file}__ $file
+#
+#  Submit the job
+#
+stal="standalone"
+
+if [[ $output = "" ]] || [[ $output = " /dev/null" ]] ; then
+    output=`echo $file | cut -d \. -f1`
+    ext=`echo $file | cut -d \. -f2`
+    ext=${ext#job*}
+    output=$output.$ext
+fi
+
+if [[ $type = local ]] ; then
+
+    case $hostname in
+	ibis | pikachu | infoboard | vali | ariel | adam | lenny | indigo | cassini | suse91 | ablamor | mordred | lenny | anubis | opensuse113 | ariadne | class0* )
+		cmd="ssh $host -l $user"	
+	    stal=/usr/local/apps/sms/bin/standalone
+		$cmd "$stal -o $output -s $RUNSHELL" < $file > $smsjobsub 2>&1 || \
+		  ERROR "Job submission  to ssh standalone failed." 
+	;;	
+	*)
+    standalone -o $output -s $RUNSHELL < $file > $smsjobsub 2>&1 || \
+      ERROR "Job submission  to rsh standalone failed." 
+    esac
+
+else
+  case $host in
+   itanium)
+	cmd="ssh $host -l $user"
+	stal=/usr/local/apps/sms/bin/standalone
+	;;
+   borg2)
+	stal=/usr/local/apps/sms/bin/standalone
+	;;
+   solar)
+	stal=/home/ma/emos/bin/sun4/standalone
+	;;
+   ibis | infoboard | pikachu | vali | ariel | adam | lenny | indigo | cassini | suse91 | ablamor | mordred | lenny | anubis | opensuse113 | ariadne | class0* )
+	cmd="ssh $host -l $user"	
+	stal=/usr/local/apps/sms/bin/standalone
+	$cmd "$stal -o $output -s $RUNSHELL" < $file > $smsjobsub 2>&1 || \
+	  ERROR "Job submission  to rsh standalone failed." 
+	;;	
+   arwen)
+	stal=/usr/local/apps/sms/bin/standalone
+	;;
+   *)
+	stal=/usr/local/apps/sms/bin/standalone
+  esac
+
+  $cmd "$stal -o $output -s $RUNSHELL" < $file > $smsjobsub 2>&1 || \
+    ERROR "Job submission  to rsh standalone failed." 
+fi
+
+  ;;
+esac
+
+# CP_SUB
+
+exit 0
+k=change 
+c=ecflow_client
+c=/var/tmp/map/work/p4/merlin/workspace/MyProject//Client/bin/gcc-4.5/debug/ecflow_client
+h="--port 3199 --host ibis"
+node=/ealadin
+for n in SMSNAME SMSTRYNO SMSJOBOUT SMSPASS SMSNODE SMS_PROG; do $c $h --alter $k variable $n 0 $node; done
+
+
+

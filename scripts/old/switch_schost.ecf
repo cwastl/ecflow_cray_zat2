@@ -1,0 +1,61 @@
+%manual
+TASK:
+    claef/switch_schost
+
+DESCRIPTION:
+    This task switches schost between cca and ccb
+
+SOURCE:
+    ~zat2/ecf/scripts/switch_schost
+
+TRIGGER:
+    manually
+
+MAIN FRAME:
+    ecgate
+
+OPERATOR:
+    - Execute this task if there are problems on cca/ccb
+    - In case of problems please call:
+      1.) +4369981568924, Mr. Clemens Wastl
+      2.) +436802040400, Mr. Florian Weidle
+      3.) +436767085070, Mr. Christoph Wittmann
+      - Please report to: claef_timecrit_mgmt@lists.ecmwf.int
+%end
+
+%include <pbs.h>
+%include <head.h>
+
+from_host=%SCHOST%
+sthost=%STHOST%
+
+LS=/$sthost/home/%USER%/bin/ls.py
+
+client="ecflow_client --port %ECF_PORT% --host %ECF_HOST%"
+
+env ECF_HOST=%ECF_HOST% ECF_PORT=%ECF_PORT% $LS -NRVv /%SUITE% | grep $from_host | grep -E -v "(ECF_SCRIPT|ECF_JOB)" > list.tmp
+
+case $from_host in
+
+  cca) to_host=ccb
+       ;;
+  ccb) to_host=cca
+       ;;
+  *)   echo "ERROR: unknown SCHOST " %SCHOST% 
+       exit 1
+       ;;
+esac
+
+ecflow_client --label=info "Change SCHOST from to $from_host to $to_host"
+
+# replace
+while read -r path val;  do
+  p=$(echo $path | cut -d: -f1);
+  name=$(echo $path | cut -d: -f2);
+  newval=${val/${from_host}/${to_host}}
+  $client --alter=change variable $name $newval $p;
+done < /$sthost/tcwork/zat2/sb/CLAEF/list.tmp
+
+message="SCHOST = $to_host  STHOST = $sthost"
+
+%include <tail.h>

@@ -1,0 +1,134 @@
+%manual
+TASK:
+    claef/runs/RUN_[HH]/lbc/MEM_[MM]/divlbc
+
+    [HH]=00,06,12,18; [MM]=00,01,..,16
+
+DESCRIPTION:
+    This task divides LBC for 901
+
+SOURCE:
+    '~zat2/ecf/scripts/divlbc.ecf'
+
+TRIGGER:
+    claef/runs/RUN_[HH]/lbc/getlbc:a
+
+COMPLETE:
+    :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete !not necessary for control member
+
+MAIN FRAME:
+    cca/ccb (see variable SCHOST)
+
+OPERATOR:
+    - If this task fails, rerun this task
+    - If failure persists, check if claef/runs/RUN_[HH]/lbc/getlbc was running correctly. If not, rerun task claef/runs/RUN_[HH]/lbc/getlbc and requeue this task
+    - If failure persists, this is a severe error with LBC files:
+    - Please report the error:
+      Every day between 6-20 UTC please call:
+      1.) +4369981568924, Mr. Clemens Wastl
+      2.) +436802040400, Mr. Florian Weidle
+      3.) +436767085070, Mr. Christoph Wittmann
+      - Please report to: claef_timecrit_mgmt@lists.ecmwf.int
+%end
+
+%include <pbs.h>
+%include <head.h>
+
+date=%DATUM%
+run=%LAUF%
+lagg=%VORHI%
+couplfr=%KOPPLUNG%
+mem=%MEMBER%
+files=%STHOST%
+user=%USER%
+
+###########################Run setup script for environment########################
+. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date $mem $lagg 999 $user $files
+###################################################################################
+
+# report to ecflow
+ecflow_client --label=run "The date is now ${date} ${run}"
+
+if [[ ${mem} == "00" ]]
+then
+   leadtime=%LEADCTL%
+else
+   leadtime=%LEAD%
+fi
+
+[[ ! -d ${LBCDIR} ]] && mkdir -p ${LBCDIR}
+
+cd ${LBCDIR}
+
+rm -fr ${LBCDIR}/*
+
+ln -sf ${BINDIR}/app_lsm.filter app_lsm.filter
+ln -sf ${BINDIR}/app_z.filter app_z.filter
+ln -sf ${LBCGET}/landseamask.grb landseamask.grb
+
+i=0 
+(( leadtime=$leadtime+$lagg ))
+while (( $i <= $leadtime )) ; do
+
+   FT=$(printf "%%03d" $i)
+ 
+   if [[ ${i} -lt ${lagg} && ${i} -gt 0 ]]
+   then
+
+      ecflow_client --label=info "${FT}"
+      (( i=$i+$couplfr ))
+  
+   else  
+   
+
+      (( WAITCOUNT = 0 ))
+      while [[ ${WAITCOUNT} -le 60 ]]
+      do
+  
+         if [[ -f ${LBCGET}/${mem}-atm.pdg.grb_${n1date}${n1run}00+${FT} && -f ${LBCGET}/${mem}-atm.spe.grb_${n1date}${n1run}00+${FT} && -f ${LBCGET}/${mem}-sol.pdg.grb_${n1date}${n1run}00+${FT} ]]
+         then
+            (( WAITCOUNT = 300 ))
+            ecflow_client --label=info "Everything available for +${FT}"
+         else
+            ecflow_client --label=info "${mem}-atm.pdg.grb_${n1date}${n1run}00+${FT} not yet available"
+            (( WAITCOUNT = ${WAITCOUNT} + 1 ))
+            sleep 60
+         fi
+
+      done
+
+      if [[ ${WAITCOUNT} -gt 61 ]]
+      then
+         if [[ ${FT} -ne "000" ]]
+         then
+            grib_filter -o ${LBCGET}/${mem}-sol.pdg.grb_${n1date}${n1run}00+${FT} app_lsm.filter landseamask.grb 
+            grib_filter -o ${LBCGET}/${mem}-sol.pdg.grb_${n1date}${n1run}00+${FT} app_z.filter landseamask.grb
+         else
+            if [[ ${mem} -ne "00" ]] 
+            then
+               grib_filter -o ${LBCGET}/${mem}-sol.pdg.grb_${n1date}${n1run}00+${FT} app_lsm.filter landseamask.grb 
+            fi
+         fi
+         grib_copy -B "level:l asc" ${LBCGET}/${mem}-atm.pdg.grb_${n1date}${n1run}00+${FT} ${LBCDIR}/atm.pdg.grib_${n1date}${n1run}+${FT}
+         grib_copy -B "level:l asc" ${LBCGET}/${mem}-atm.spe.grb_${n1date}${n1run}00+${FT} ${LBCDIR}/atm.spe.grib_${n1date}${n1run}+${FT}
+         ln -sf ${LBCGET}/${mem}-sol.pdg.grb_${n1date}${n1run}00+${FT} ${LBCDIR}/sol.pdg.grib_${n1date}${n1run}+${FT}
+
+         ecflow_client --event=b
+
+         rm -f ${mem}-atm.pdg.grb_${n1date}${n1run}00+${FT} ${mem}-atm.spe.grb_${n1date}${n1run}00+${FT}
+         
+      else
+         ecflow_client --label=error "${mem}-atm.pdg.grb_${n1date}${n1run}00+${FT} not available"
+         exit 1   
+      fi
+  
+      (( i=$i+$couplfr ))
+
+   fi 
+      
+done
+
+rm -f landseamask.grb app_lsm.filter app_z.filter 
+
+%include <tail.h>
+

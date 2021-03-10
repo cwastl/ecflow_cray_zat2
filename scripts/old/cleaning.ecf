@@ -1,0 +1,94 @@
+#!/bin/ksh
+#
+# Script for cleaning
+
+%include <pbs.h>
+
+%include <head.h>
+
+date=%DATUM%
+run=%LAUF%
+amem=%ANZMEMB%
+assimc=%ASSIMC%
+files=%STHOST%
+user=%USER%
+
+###########################Run setup script for environment#########################
+. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date 999 999 $assimc $user $files
+####################################################################################
+
+# report to ecflow
+ecflow_client --label=run "The date is now ${date} ${run}"
+
+ecflow_client --label=info "Cleaning ${files}"
+if [ -d ${MY_DIR}/DATA/${p1date}/${p1run} ] ; then
+
+   ecflow_client --label=info "Date/run exists"
+   cd ${MY_DIR}/DATA/${p1date}/${p1run}
+   rm -rf BATOR BATOR3D OBSERVATIONS LBCGET 
+
+   i=0
+   while (( ${i} <= ${amem} - 1 )) ; do
+
+      typeset -Z2 ii
+      ii=$i
+
+      if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii} ] ; then
+
+         cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}
+         rm -rf 927 927SURF ADDSURF CANARI COUPL LBC MINIMIZATION PROGRID SCREENING SSTEX
+      
+         if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001 ] ; then
+ 
+            cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001
+            find . -mindepth 1 ! -name "ICMSH*" | xargs rm -rf
+        
+         fi 
+
+      fi
+
+      (( i=${i}+1 ))   
+
+   done
+
+else
+
+   ecflow_client --label=info "Date/run does not exist"
+
+fi
+
+
+[[ -d ${MY_DIR}/DATA/${p9date}/${p9run} ]] && rm -rf ${MY_DIR}/DATA/${p9date}/${p9run}
+
+[[ -d ${MY_DIR}/DATA/${psdate} ]] && rm -rf ${MY_DIR}/DATA/${psdate}
+
+
+ecflow_client --label=info "Cleaning Mirror"
+
+i=0
+while (( ${i} <= ${amem} - 1 )) ; do
+
+   typeset -Z2 ii
+   ii=$i
+      
+   if [ -d ${MIRRORFS}/DATA/${p1date}/${p1run}/MEM_${ii}/001 ] ; then
+ 
+      ecflow_client --label=info "Date/run/mem exists"
+      cd ${MIRRORFS}/DATA/${p1date}/${p1run}/MEM_${ii}/001
+      find . -mindepth 1 ! -name "ICMSH*" | xargs rm -rf
+        
+   else 
+
+      ecflow_client --label=info "Date/run/mem does not exist"
+
+   fi
+
+   (( i=${i}+1 ))   
+
+done
+
+[[ -d ${MIRRORFS}/DATA/${p9date}/${p9run} ]] && rm -rf ${MIRRORFS}/DATA/${p9date}/${p9run}
+
+[[ -d ${MIRRORFS}/DATA/${psdate} ]] && rm -rf ${MIRRORFS}/DATA/${psdate}
+
+%include <tail.h>
