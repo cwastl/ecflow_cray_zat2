@@ -47,21 +47,18 @@ couplf = 3
 # use 15min output for precipitation
 step15 = False
 
-# use GL Tool yes/no, if no - 901 is used
-gl = False
-
 # assimilation switches
 assimi = True   #assimilation yes/no
 assimm = 0      #number of members without 3DVar
 assimc = 6      #assimilation cycle in hours
-eda = False      #ensemble data assimilation
-seda = False     #surface eda
+eda = True      #ensemble data assimilation
+seda = True     #surface eda
 
 # use EnJK method of Endy yes/no
-enjk = False
+enjk = True
 
 # use stochastic physics model error representation yes/no
-stophy = False
+stophy = True
 
 # block transfer to speed up
 blocks = 6             #block size
@@ -174,7 +171,7 @@ def family_dummy(startc1,startc2):
          Family("check_lbc",
 
             # Task dummy2
-            [  
+            [
                Task("dummy2",
                   Complete("../../lbc == complete"),
                   Edit(
@@ -195,7 +192,7 @@ def family_dummy(startc1,startc2):
          Family("check_obs",
 
             # Task dummy2
-            [  
+            [
                Task("dummy2",
                   Complete("../../obs == complete"),
                   Edit(
@@ -216,7 +213,7 @@ def family_dummy(startc1,startc2):
          Family("check_main",
 
             # Task dummy2
-            [  
+            [
                Task("dummy2",
                   Complete("../../main == complete"),
                   Edit(
@@ -232,7 +229,7 @@ def family_dummy(startc1,startc2):
          )
        ]
     )
- 
+
 def family_cleaning():
 
    return Task("cleaning",
@@ -268,9 +265,6 @@ def family_lbc():
     # Family LBC
     return Family("lbc",
 
-       Edit(
-          GL=gl),
-
        # Task getlbc
        [
           Task("getlbc",
@@ -296,7 +290,7 @@ def family_lbc():
           [
              Task("divlbc",
                 Trigger("../getlbc:a"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete"),
+                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete"),
                 Event("b"),
                 Edit(
                    NP=1,
@@ -314,7 +308,7 @@ def family_lbc():
           [
              Task("901",
                 Trigger("divlbc:b"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete"),
+                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete"),
                 Event("c"),
                 Edit(
                    NP=1,
@@ -410,16 +404,16 @@ def family_main():
    return Family("main",
 
       Edit(
-         GL=gl,
          ASSIM=assimi,
          LEADT=fcst,
+         SEDA=seda,
          ARCHIV=arch,
          TRANSF=trans),
 
       # Family MEMBER
       [
          Family("MEM_{:02d}".format(mem),
-     
+
             # Task 927atm
             [
                Task("927",
@@ -435,21 +429,6 @@ def family_main():
                   Label("info", ""),
                )
             ],
-
-#            # Task 927/PGD
-#            [
-#              Task("pgd",
-#                 Trigger("../../lbc/MEM_{:02d}/901 == complete or ../../lbc/MEM_{:02d}/901:c".format(mem,mem)),
-#                 Edit(
-#                    MEMBER="{:02d}".format(mem),
-#                    NP=1,
-#                    CLASS='ts',
-#                    NAME="pgd{:02d}".format(mem),
-#                 ),
-#                 Label("run", ""),
-#                 Label("info", ""),
-#               )
-#            ],
 
             # Task 927/surf
             [
@@ -748,7 +727,6 @@ defs = Defs().add(
 
              Family("runs",
 
-                # Main Runs per day (00, 06, 12, 18)
                 RepeatDate("DATUM",start_date,end_date),
 
                 # Task dummy
@@ -763,6 +741,7 @@ defs = Defs().add(
                   Defstatus("suspended"),
                 ),
 
+                # Main Runs per day (00, 06, 12, 18)
                 Family("RUN_00",
                    Edit( LAUF='00', VORHI=6, LEAD=fcst, LEADCTL=fcstctl ),
 

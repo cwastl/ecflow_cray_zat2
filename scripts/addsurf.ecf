@@ -35,8 +35,6 @@ OPERATOR:
 %include <pbs.h>
 %include <head.h>
 
-module load cray-snplauncher
-
 date=%DATUM%
 run=%LAUF%
 mem=%MEMBER%
@@ -44,12 +42,15 @@ assimc=%ASSIMC%
 files=%STHOST%
 user=%USER%
 
-############################Run setup script for environment#########################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date $mem 999 $assimc $user $files
-#####################################################################################
+############################Run setup script for environment##############################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date $mem 999 $assimc $user $files
+##########################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"
+
+# Environmental settings
+module load cray-snplauncher
 
 [[ ! -d ${ADDSURFDIR} ]] && mkdir -p ${ADDSURFDIR}
 [[ ! -d ${LOGDIR} ]] && mkdir -p ${LOGDIR}
@@ -72,13 +73,12 @@ export DR_HOOK_IGNORE_SIGNALS=-1
 # Get input data (ELSC*, namelist, binary, etc.)
 cp ${SSTEXDIR}/AROME_SSTOK ./fort.11
 cp ${C927DIR}/ADDSURFAROMALBC000 ./fort.12
-#cp ${MY_DIR}/DATA/${date}/${run}/MEM_00/927/ADDSURFAROMALBC000 ./fort.12
 
 # Copy namelist
 cp ${NAMELADDSURF} fort.4
 
 ecflow_client --label=info "Addsurf"
-/usr/bin/time -v mpiexec ${BINADDSURF} > ${LOGDIR}/ADDSURF_%ECF_TRYNO%_${mem}.out 2>&1
+/usr/bin/time -v mpiexec ${BINADDSURF} > ${LOGDIR}/ADDSURF_%ECF_TRYNO%_${mem}.LOG 2>&1
 
 mv fort.11 ${ADDSURFRESULTFILE}
 

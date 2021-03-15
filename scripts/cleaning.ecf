@@ -37,9 +37,9 @@ assimc=%ASSIMC%
 files=%STHOST%
 user=%USER%
 
-###########################Run setup script for environment#########################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date 999 999 $assimc $user $files
-####################################################################################
+###########################Run setup script for environment##############################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date 999 999 $assimc $user $files
+#########################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"
@@ -59,7 +59,7 @@ if [ -d ${MY_DIR}/DATA/${p1date}/${p1run} ] ; then
       if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii} ] ; then
 
          cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}
-         rm -rf 927 927SURF ADDSURF COUPL LBC PROGRID SCREENING SSTEX ARCHIV
+         rm -rf 927SURF ADDSURF COUPL LBC PROGRID SCREENING SSTEX
       
          if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001 ] ; then
  

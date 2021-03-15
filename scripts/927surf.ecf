@@ -30,22 +30,22 @@ OPERATOR:
 %include <pbs_mem2.h>
 %include <head.h>
 
-module load cray-snplauncher
-
 date=%DATUM%
 run=%LAUF%
 mem=%MEMBER%
 lagg=%VORHI%
-gl=%GL%
 files=%STHOST%
 user=%USER%
 
-###############################Run setup script for environment####################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date $mem $lagg 999 $user $files
-###################################################################################
+###############################Run setup script for environment#########################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date $mem $lagg 999 $user $files
+########################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"
+
+# Environmental settings
+module load cray-snplauncher
 
 [[ ! -d ${C927SURFDIR} ]] && mkdir -p ${C927SURFDIR}
 [[ ! -d ${LOGDIR} ]] && mkdir -p ${LOGDIR}
@@ -86,74 +86,44 @@ export DR_HOOK=0
 export DR_HOOK_SILENT=1
 export DR_HOOK_IGNORE_SIGNALS=-1
 
-# create LFI namelist:
-
 ln -sf ${NAMEL927SURFEX} ${RUNDIR}/PRE_REAL1.nam
 
 month=`echo "$date" | awk '{print substr($1,5,2)}'`
 
-#--------------------------------------------------------
-
-lfmwrit=.FALSE. # Default is write to LFI (= .TRUE.)
-lfmread=.FALSE. # Default is read from LFI (= .TRUE.)
-lhisfwr=.TRUE.  # Default is write historical data (= .TRUE.)
-lpgdfwr=.FALSE. # Default is not write PGD (= .FALSE.)
+ln -s ${CLIMFILENAME_AROME}${month} ${RUNDIR}/const.clim.${EXP}
 
 if [[ ${mem} == "00" ]];then
-   ln -s ${CLIMFILENAME_AROME}${month} ${RUNDIR}/const.clim.${EXP}
-elif [[ ${mem} == "01" ]];then
-   ln -s ${CLIMDIR}/clim_claef_gmtedf_m${month} const.clim.AROM
-fi
-
-if [[ $gl == 1 ]];then
-   ln -s ${CLIMFILENAME_ECMWF_LAE}${month} ${RUNDIR}/Const.Clim
+   ln -s ${CLIMFILENAME_ECMWF_DET}${month} ${RUNDIR}/Const.Clim
    NAMELSURF=${NAMEL927SURF}
 else
-   if [[ ${mem} == "00"  || ${mem} == "01" ]];then
-      ln -s ${CLIMFILENAME_ECMWF_DET}${month} ${RUNDIR}/Const.Clim
-      NAMELSURF=${NAMEL927SURF}
-   else
-      ln -s ${CLIMFILENAME_ECMWF_GLO}${month} ${RUNDIR}/Const.Clim
-      NAMELSURF=${NAMEL927SURF_GLO}
-   fi
+   ln -s ${CLIMFILENAME_ECMWF_GLO}${month} ${RUNDIR}/Const.Clim
+   NAMELSURF=${NAMEL927SURF_GLO}
 fi
+
+lpgdfwr=.FALSE.
 
 #---  modifiy namelist
 sed -e   "s/{nproma}/$NPROMA/"\
-    -e   "s/{neini}/$NEINI/"\
-    -e   "s/{lsprt}/.false./"\
     -e   "s/{EXPERIMENT}/$EXP/"\
     -e   "s/{NPROC}/$NPROC/"\
-    -e   "s/{nprgpew}/$NPRGPEW/"\
-    -e   "s/{nprgpns}/$NPRGPNS/"\
-    -e   "s/{nprtrv}/$NPRTRV/"\
-    -e   "s/{nstrin}/$NSTRIN/"\
-    -e   "s/{nstrout}/$NSTROUT/"\
-    -e   "s/{nprtrw}/$NPRTRW/g"\
-    -e   "s/{lfmwrit}/${lfmwrit}/"\
-    -e   "s/{lfmread}/${lfmread}/"\
-    -e   "s/{lhisfwr}/${lhisfwr}/"\
     -e   "s/{lpgdfwr}/${lpgdfwr}/g" ${NAMELSURF} > ${RUNDIR}/fort.4
  
-if [[ ! -s ${PGDFILE_FA} ]]; then
-   ln -s ${CLIMDIR}/PGD_${EXP}.fa ${PGDFILE_FA}
-fi
+ln -s ${PGDFILE_FA} ${RUNDIR}/const.clim.sfx.${EXP}
 
-ln -s ${PGDFILE_FA} ${RUNDIR}/Const.Clim.sfx # sts cy40t1 FA
-ln -s ${ECOCLIMAPI} ${RUNDIR}/ecoclimapI_covers_param.bin #cy40
-ln -s ${ECOCLIMAPII} ${RUNDIR}/ecoclimapII_eu_covers_param.bin #cy40
+ln -s ${ECOCLIMAPI} ${RUNDIR}/ecoclimapI_covers_param.bin
+ln -s ${ECOCLIMAPII} ${RUNDIR}/ecoclimapII_eu_covers_param.bin
 
 cstep=$(printf "%%04d" $lagg)
 cstep2=$(printf "%%03d" $lagg)
 
 (( WAITCOUNT = 0 ))
-if [[ ${mem} == "00" || ${mem} == "01" ]]
+if [[ ${mem} == "00" ]]
 then
    while [[ ${WAITCOUNT} -le 120 ]]
    do
       if [[ -f ${LBCIFS}/ffei${n1date}_${n1run}00+${cstep2} ]]
       then
-         ln -s ${LBCIFS}/ffei${n1date}_${n1run}00+${cstep2} ICMSHE927INIT
+         ln -s ${LBCIFS}/ffei${n1date}_${n1run}00+${cstep2} ICMSHFPOSINIT
          (( WAITCOUNT = 300 ))
       else
          echo "ATTENTION: dissemination file does not yet exist!!!"
@@ -167,7 +137,7 @@ else
    do
       if [[ -f ${COUPLDIR}/ICMSHBC${mem}+${cstep} ]]
       then
-         ln -s ${COUPLDIR}/ICMSHBC${mem}+${cstep} ICMSHE927INIT
+         ln -s ${COUPLDIR}/ICMSHBC${mem}+${cstep} ICMSHFPOSINIT
          (( WAITCOUNT = 300 ))
       else
          echo "ATTENTION: dissemination file does not yet exist!!!"
@@ -193,7 +163,7 @@ status=${?}
 # ----------------------------------
 
 rename NODE.001_01 ${LOGDIR}/NODE_927_000_${EXP}_%ECF_TRYNO%_${mem} NODE.001_01
-rename PFE927${EXP}+0000.sfx ${C927SURFDIR}/PFE927${EXP}+0000.sfx PFE927${EXP}+0000.sfx
+rename PFFPOSAROM+0000.sfx ${C927SURFDIR}/SURFEX_${EXP}_INIT.fa PFFPOSAROM+0000.sfx
 
 cd ${C927SURFDIR}
 rm -rf ${RUNDIR}

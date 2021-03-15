@@ -40,9 +40,9 @@ couplfr=%KOPPLUNG%
 files=%STHOST%
 user=%USER%
 
-##########################Run setup script for environment########################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date 999 $lagg 999 $user $files
-##################################################################################
+##########################Run setup script for environment#############################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date 999 $lagg 999 $user $files
+#######################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"

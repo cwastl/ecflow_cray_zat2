@@ -48,7 +48,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20210115 20221231 1
+    repeat date DATUM 20210311 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -111,7 +111,6 @@ suite claef
         label run ""
         label info ""
       family lbc
-        edit GL '0'
         task getlbc
           trigger ../dummy/ez_trigger/dummy1 == complete
           edit NP '1'
@@ -123,7 +122,7 @@ suite claef
           event a
         family MEM_00
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '00'
             edit NP '1'
@@ -134,7 +133,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '00'
             edit NP '1'
@@ -147,7 +146,7 @@ suite claef
         endfamily
         family MEM_01
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '01'
             edit NP '1'
@@ -158,7 +157,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '01'
             edit NP '1'
@@ -212,7 +211,7 @@ suite claef
         edit ASSIM '1'
         edit TRANSF '0'
         edit ARCHIV '0'
-        edit GL '0'
+        edit SEDA '1'
         edit LEADT '48'
         family MEM_00
           task 927
@@ -256,7 +255,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '00'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen00'
             edit CLASS 'tp'
             label run ""
@@ -279,13 +278,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '00'
             edit NAME 'canari00'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim00'
             edit ASSIMM '0'
             edit MEMBER '00'
@@ -299,7 +298,7 @@ suite claef
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -404,7 +403,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '01'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen01'
             edit CLASS 'tp'
             label run ""
@@ -427,13 +426,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '01'
             edit NAME 'canari01'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim01'
             edit ASSIMM '0'
             edit MEMBER '01'
@@ -447,7 +446,7 @@ suite claef
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -567,7 +566,6 @@ suite claef
         label run ""
         label info ""
       family lbc
-        edit GL '0'
         task getlbc
           trigger ../dummy/ez_trigger/dummy1 == complete
           edit NP '1'
@@ -579,7 +577,7 @@ suite claef
           event a
         family MEM_00
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '00'
             edit NP '1'
@@ -590,7 +588,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '00'
             edit NP '1'
@@ -603,7 +601,7 @@ suite claef
         endfamily
         family MEM_01
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '01'
             edit NP '1'
@@ -614,7 +612,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '01'
             edit NP '1'
@@ -668,7 +666,7 @@ suite claef
         edit ASSIM '1'
         edit TRANSF '0'
         edit ARCHIV '0'
-        edit GL '0'
+        edit SEDA '1'
         edit LEADT '48'
         family MEM_00
           task 927
@@ -712,7 +710,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '00'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen00'
             edit CLASS 'tp'
             label run ""
@@ -735,13 +733,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '00'
             edit NAME 'canari00'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim00'
             edit ASSIMM '0'
             edit MEMBER '00'
@@ -755,7 +753,7 @@ suite claef
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -860,7 +858,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '01'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen01'
             edit CLASS 'tp'
             label run ""
@@ -883,13 +881,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '01'
             edit NAME 'canari01'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim01'
             edit ASSIMM '0'
             edit MEMBER '01'
@@ -903,7 +901,7 @@ suite claef
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -1023,7 +1021,6 @@ suite claef
         label run ""
         label info ""
       family lbc
-        edit GL '0'
         task getlbc
           trigger ../dummy/ez_trigger/dummy1 == complete
           edit NP '1'
@@ -1035,7 +1032,7 @@ suite claef
           event a
         family MEM_00
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '00'
             edit NP '1'
@@ -1046,7 +1043,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '00'
             edit NP '1'
@@ -1059,7 +1056,7 @@ suite claef
         endfamily
         family MEM_01
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '01'
             edit NP '1'
@@ -1070,7 +1067,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '01'
             edit NP '1'
@@ -1124,7 +1121,7 @@ suite claef
         edit ASSIM '1'
         edit TRANSF '0'
         edit ARCHIV '0'
-        edit GL '0'
+        edit SEDA '1'
         edit LEADT '48'
         family MEM_00
           task 927
@@ -1168,7 +1165,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '00'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen00'
             edit CLASS 'tp'
             label run ""
@@ -1191,13 +1188,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '00'
             edit NAME 'canari00'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim00'
             edit ASSIMM '0'
             edit MEMBER '00'
@@ -1211,7 +1208,7 @@ suite claef
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -1316,7 +1313,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '01'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen01'
             edit CLASS 'tp'
             label run ""
@@ -1339,13 +1336,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '01'
             edit NAME 'canari01'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim01'
             edit ASSIMM '0'
             edit MEMBER '01'
@@ -1359,7 +1356,7 @@ suite claef
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -1479,7 +1476,6 @@ suite claef
         label run ""
         label info ""
       family lbc
-        edit GL '0'
         task getlbc
           trigger ../dummy/ez_trigger/dummy1 == complete
           edit NP '1'
@@ -1491,7 +1487,7 @@ suite claef
           event a
         family MEM_00
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '00'
             edit NP '1'
@@ -1502,7 +1498,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '00'
             edit NP '1'
@@ -1515,7 +1511,7 @@ suite claef
         endfamily
         family MEM_01
           task divlbc
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger ../getlbc:a
             edit MEMBER '01'
             edit NP '1'
@@ -1526,7 +1522,7 @@ suite claef
             label error ""
             event b
           task 901
-            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 01 and ../../dummy/ez_trigger/dummy1 == complete
+            complete :MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete
             trigger divlbc:b
             edit MEMBER '01'
             edit NP '1'
@@ -1580,7 +1576,7 @@ suite claef
         edit ASSIM '1'
         edit TRANSF '0'
         edit ARCHIV '0'
-        edit GL '0'
+        edit SEDA '1'
         edit LEADT '48'
         family MEM_00
           task 927
@@ -1624,7 +1620,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '00'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen00'
             edit CLASS 'tp'
             label run ""
@@ -1647,13 +1643,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '00'
             edit NAME 'canari00'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim00'
             edit ASSIMM '0'
             edit MEMBER '00'
@@ -1667,7 +1663,7 @@ suite claef
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""
@@ -1772,7 +1768,7 @@ suite claef
             trigger :ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete
             edit NP '36'
             edit MEMBER '01'
-            edit EDA '0'
+            edit EDA '1'
             edit NAME 'screen01'
             edit CLASS 'tp'
             label run ""
@@ -1795,13 +1791,13 @@ suite claef
             edit CLASS 'ts'
             edit MEMBER '01'
             edit NAME 'canari01'
-            edit SEDA '0'
+            edit SEDA '1'
             label run ""
             label info ""
           task minim
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
             trigger :ASSIM == 1 and screen == complete
-            edit ENSJK '0'
+            edit ENSJK '1'
             edit NAME 'minim01'
             edit ASSIMM '0'
             edit MEMBER '01'
@@ -1815,7 +1811,7 @@ suite claef
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
-            edit STOCH '0'
+            edit STOCH '1'
             edit CLASS 'tp'
             label run ""
             label info ""

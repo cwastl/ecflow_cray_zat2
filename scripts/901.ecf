@@ -34,9 +34,6 @@ OPERATOR:
 %include <pbs.h>
 %include <head.h>
 
-module load craype-hugepages2M
-module load cray-snplauncher
-
 date=%DATUM%
 run=%LAUF%
 mem=%MEMBER%
@@ -45,12 +42,16 @@ couplfr=%KOPPLUNG%
 files=%STHOST%
 user=%USER%
 
-############################Run setup script for environment#######################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date $mem $lagg 999 $user $files
-###################################################################################
+############################Run setup script for environment############################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date $mem $lagg 999 $user $files
+########################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"
+
+# Environmental settings
+module load craype-hugepages2M
+module load cray-snplauncher
 
 if [[ ${mem} == "00" ]]
 then

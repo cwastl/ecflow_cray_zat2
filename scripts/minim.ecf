@@ -34,8 +34,6 @@ OPERATOR:
 %include <pbs.h>
 %include <head.h>
 
-module load python3
-
 date=%DATUM%
 run=%LAUF%
 mem=%MEMBER%
@@ -45,15 +43,17 @@ files=%STHOST%
 user=%USER%
 assimm=%ASSIMM%
 
-############################Run setup script for environment#########################
-. /${files}/home/${user}/CLAEF/SCR/setup.ksh $run $date $mem 999 $assimc $user $files
-#####################################################################################
+############################Run setup script for environment##############################
+. /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date $mem 999 $assimc $user $files
+##########################################################################################
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date} ${run}"
 
 # Environmental settings
 prgenvswitchto intel
+module swap intel/18.0.0.033
+module load python3
 
 INFLATION=.FALSE.       # ECMWF EDA spread will be increased by an inflation factor
 LHYDRO3D=.TRUE.
@@ -104,7 +104,7 @@ then
    #export CNF_DEBUG=1
    #export TO_ODB_DEBUG=1
    #export F_RECLUNIT=BYTE
-   REDNMC=1.2
+   REDNMC=0.5
    NITER=66 
    NSIMU=69
 
@@ -125,11 +125,12 @@ then
    export TIME_INIT_HHMMSS=${run}0000
    export ODB_STATIC_LINKING=1
    export TO_ODB_ECMWF=0
+   export RTTOV_COEFDIR=${RUNDIR}
 
    #Jk parameters perturbations
    typeset -i seed seed1 aa
    adate3=$(($adate3 + ${mem}))
-   seed=$mem*$adate3
+   seed=${mem}*$adate3
 
    if [[ ${mem} -eq "00" ]]; then
      AT=0.70
@@ -172,6 +173,10 @@ then
       LEJK=.FALSE.
    fi
 
+   LSPRT=.FALSE.
+   QLGP=.TRUE. 
+   QLSP=.FALSE.
+
    NSMAXJK=215          # integer truncation of the low res. LAM geometry
    ALPHAKT=$AT          # amplification factor for Jk temperture term
    ALPHAKVOR=$AV        # amplification factor for Jk vorticity term
@@ -185,59 +190,36 @@ then
    # Fetching of the input files
    cp $CLIMDIR/table? .
 
-   cp ${CLIMDIR}/const.tar.gz .
-   tar -xzvf const.tar.gz
+   cp ${CLIMDIR}/const_cy43t2.tar.gz .
+   tar -xzvf const_cy43t2.tar.gz
 
    ln -s scat.cmod5.table fort.36
 
    # Get VARBC file from SCREENING, ODB file from CCMA and first guess
    cp ${SCREENDIR}/VARBC.cycle ./VARBC.cycle
    cp ${ADDSURFRESULTFILE} ./ICMSHMINIIMIN
-   cp ${ADDSURFRESULTFILE} .
    cp ${SCREENDIR}/CCMA.tar CCMA.tar
 
    tar -xvf CCMA.tar
 
    cp $NAMELIASICHAN $RUNDIR/iasichannels
-   cp $NAMELCRISCHAN $RUNDIR/crischannels
    cp CCMA/IOASSIGN IOASSIGN
 
    # Get B-MATRIX and V-MATRIX files
+   cp $BMATRIXFILE1 ./stabal96.bal
+   cp $BMATRIXFILE2 ./stabal96.cv
+   cp $BMATRIXFILE3 ./stabal96.cvt
 
-   if [[ ${mem} == "01" ]]
-   then
-
-      cp /sc1/tcwork/zat2/lb/CLAEF/CLIM/BMATRIX/neu/stabal.bal ./stabal96.bal
-      cp /sc1/tcwork/zat2/lb/CLAEF/CLIM/BMATRIX/neu/stabal.cv ./stabal96.cv
-      cp /sc1/tcwork/zat2/lb/CLAEF/CLIM/BMATRIX/neu/stabal.cvt ./stabal96.cvt
-    
-   else
-
-      cp $BMATRIXFILE1 ./stabal96.bal
-      cp $BMATRIXFILE2 ./stabal96.cv
-      cp $BMATRIXFILE3 ./stabal96.cvt
-
-   fi
+   cp ICMSHMINIIMIN ICMSHMINIINIT
+   cp ICMSHMINIIMIN ICMRFMINI0000
 
    if [[ $LEJK == ".TRUE." ]]; then
-
-     LSPRT=.FALSE.
-     QLGP=.FALSE. 
-     QLSP=.TRUE.
 
      cp $VMATRIXFILE  ./nonsep93_jk.cvt
      cp ${SSTEXANAFILE} ./ICMJKMINIINIT 
 
-     # Humidity -> spectral (because of Jk)
-     ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -r S043TEMPERATURE -f ICMSHMINIIMIN medusa_worm
-     ${BINDIR}/fa_gp2sp.py medusa_worm
-     ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f medusa_worm.allsp ICMSHMINIIMIN
-     rm -rf medusa_worm.allsp 
-     cp ICMSHMINIIMIN ICMSHMINIINIT
-     cp ICMSHMINIIMIN ICMRFMINI0000
-
      # ECMWF perturbations inflation
-     if [[ $INFLATION == ".TRUE." && $LEJK == ".TRUE." ]]; then
+     if [[ $INFLATION == ".TRUE." ]]; then
        ecflow_client --label=info "Perturbation inflation"
        cp ${C927DIR}/ELSCFAROMALBC000 00-ICMJKMINIINIT 
        export DR_HOOK_NOT_MPI="yes"
@@ -249,24 +231,7 @@ then
        ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f fossil_dyna ICMJKMINIINIT
        rm -rf fossil_dyna
      fi
-
-     if [[ $INFLATION == ".FALSE." && $LEJK == ".TRUE." ]]; then
-       ecflow_client --label=info "Change humidity to spectral"
-       ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -r S043TEMPERATURE -f ICMJKMINIINIT fossil_dyna
-       ${BINDIR}/fa_gp2sp.py fossil_dyna
-       ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f fossil_dyna.allsp ICMJKMINIINIT
-       rm -rf fossil_dyna.allsp
-     fi
   
-   else
- 
-     LSPRT=.TRUE.
-     QLGP=.TRUE. 
-     QLSP=.FALSE.
-
-     cp ICMSHMINIIMIN ICMSHMINIINIT
-     cp ICMSHMINIIMIN ICMRFMINI0000
-
    fi
 
    rm -rf fort.4
@@ -297,26 +262,9 @@ then
        -e "s/{PRESUPJK}/${PRESUPJK}/" \
        -e "s/{NTRUNCJK}/${NTRUNCJK}/" ${NAMELMINIM} > fort.4
 
-
    # Run minimization config 131
    ecflow_client --label=info "Run Minimization"
-   /usr/bin/time -v aprun -n $NPROC ${BINMASTER} > ${LOGDIR}/MINIM_%ECF_TRYNO%_${mem}.out 2>&1
-
-
-   if [[ $LEJK == ".TRUE." ]]; then
-     ecflow_client --label=info "Change humidity to gridpoint"
-     ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f MXMINI999+0000 golem_sentry 
-     ${BINDIR}/fa_sp2gp.py golem_sentry
-     ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f golem_sentry.allgp MXMINI999+0000
-     rm -rf golem_sentry.allgp
-
-     # Correction of humidity errors due to SP<->GP conversions
-     ecflow_client --label=info "Correction of humidity errors"
-     cp $BINDIR/corrections_ecf.py .
-     python3 corrections_ecf.py ${assimc1}
-     ${BINDIR}/fa_copy -w prefix=S,suffix=HUMI.SPECIFI -f block_dragon MXMINI999+0000
-     rm -rf block_dragon
-   fi
+   /usr/bin/time -v aprun -n $NPROC ${BINMASTER} > ${LOGDIR}/MINIMIZATION_%ECF_TRYNO%_${mem}.log 2>&1
 
    # Distribute output (logfiles,nodefiles, ODB output FA output, VARBC output)
    cp VARBC.cycle ${VARBCFILE}${run}_${mem}
@@ -337,7 +285,7 @@ then
      cp AldsurfA AldsurfC
      cp $NAMELBLEND fort.4
 
-     /usr/bin/time -v aprun -n 1 $BLENDBIN > ${LOGDIR}/BLEND_%ECF_TRYNO%_${mem}.out 2>&1
+     /usr/bin/time -v aprun -n 1 $BLENDBIN > ${LOGDIR}/BLEND_%ECF_TRYNO%_${mem}.log 2>&1
 
      mv AldsurfC ${MINIMRESULTFILE}
    fi

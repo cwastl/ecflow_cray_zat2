@@ -10,7 +10,7 @@ user=%USER%
 leadtime=%LEADCTL%
 assimc=%ASSIMC%
 
-exper=("zat")
+exper=("zat" "zat2" "kmcw00")
 #exper=("zat2")
 
 # report to ecflow

@@ -1,3 +1,0 @@
-set type={TYPE};
-set perturbationNumber={NUMBER};
-write "output.grb";
