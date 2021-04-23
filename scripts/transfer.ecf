@@ -73,7 +73,7 @@ if [ ${leadtime} -gt ${assimc} ]; then
   while (( ${block} <= ${blockn} ))
   do
 
-     if [ ${block} == 1 ] ; then
+     if [ ${block} -eq 1 ] ; then
         (( blocko = ${jj} + ${blocks} ))
      else
         (( blocko = ${jj} + ${blocks} - 1 ))
@@ -91,7 +91,7 @@ if [ ${leadtime} -gt ${assimc} ]; then
          while (( ${jj} <= ${blocko} ))
          do
 
-           if [ ${step15} == 1 ] && [ ${jj} < ${leadtime} ] ; then
+           if [ ${step15} -eq 1 ] && [ ${jj} < ${leadtime} ] ; then
          
              my_min="00 15 30 45"
 

@@ -170,7 +170,7 @@ act_step_hh2=0
 act_step_min=0
 act_step_dd=0
 
-if [[ ${step15} == 1 ]]
+if [[ ${step15} -eq 1 ]]
 then 
   steps=15
 else
@@ -213,7 +213,7 @@ do
 
 done
 
-if [[ $mem == "00" || $stophy == 0 ]]
+if [[ $mem == "00" || $mem == "02" || $mem == "03" || $stophy -eq 0 ]]
 then 
    
   sed -e   "s/{nproma}/$NPROMA/"\

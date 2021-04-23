@@ -132,15 +132,13 @@ then
    adate3=$(($adate3 + ${mem}))
    seed=${mem}*$adate3
 
-   if [[ ${mem} -eq "00" ]]; then
+   if [[ ${mem} == "00" || ${mem} == "02" ]]; then
      AT=0.70
      AV=0.80
      AD=0.10
      AQ=0.04
      AP=0.00
-   fi
-
-   if [[ ${mem} -ne "00" ]]; then
+   else
      aa=$adate3*1
      seed1=$(($seed + $aa))
      AT=$(python3 -c "import random; random.seed($seed1); br=random.randint(2,11)/10.;print(br)")
@@ -163,13 +161,13 @@ then
    fi
 
    # Jk namelist parameters
-   if [[ $enjk == 1 ]]; then
+   if [[ $enjk -eq 1 ]]; then
       LEJK=.TRUE.          # main Jk switch
    else
       LEJK=.FALSE.
    fi
 
-   if [[ ${mem} -eq "00" ]]; then
+   if [[ ${mem} == "00" || ${mem} == "02" ]]; then
       LEJK=.FALSE.
    fi
 
@@ -235,6 +233,11 @@ then
    fi
 
    rm -rf fort.4
+   
+   if [[ ${mem} == "02" ]]
+   then
+     NAMELMINIM=${NAMELDIR}/namelist_minim_cy43t2_ognss
+   fi
 
    # Fill namelist template -> fort.4
    sed -e "s/{NBPROC}/${NPROC}/" \

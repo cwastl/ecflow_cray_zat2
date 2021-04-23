@@ -33,7 +33,7 @@ suite_name = "claef"
 
 #ensemble members
 #members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-members = [0,1]
+members = [0,1,2,3]
 
 # forecasting range
 fcst = 48
@@ -290,7 +290,7 @@ def family_lbc():
           [
              Task("divlbc",
                 Trigger("../getlbc:a"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete"),
+                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 02 and ../../dummy/ez_trigger/dummy1 == complete"),
                 Event("b"),
                 Edit(
                    NP=1,
@@ -308,7 +308,7 @@ def family_lbc():
           [
              Task("901",
                 Trigger("divlbc:b"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete"),
+                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 02 and ../../dummy/ez_trigger/dummy1 == complete"),
                 Event("c"),
                 Edit(
                    NP=1,
@@ -611,7 +611,7 @@ def family_main():
             [
                Task("verif",
                   Time("10:00"),
-                  Complete(":LEAD < :LEADT or :MEMBER == 01"),
+                  Complete(":LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
                      NP=1,

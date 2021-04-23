@@ -77,9 +77,9 @@ else
   member=${mem}
 fi
 
-if [ ${eda} == 1 ]
+if [ ${eda} -eq 1 ]
 then
-   if [ ${mem} -eq 00 ]
+   if [[ ${mem} == "00" || ${mem} == "02" ]]
    then
      export LPERTURB=.FALSE. #obs perturbations
      export NAEMEMBER=0      #needed for obs perturbation

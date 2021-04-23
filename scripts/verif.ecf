@@ -10,7 +10,7 @@ user=%USER%
 leadtime=%LEADCTL%
 assimc=%ASSIMC%
 
-exper=("zat" "zat2" "kmcw00")
+exper=("zat" "zat2" "kmcw00" "kmcw01" "kmcw02")
 #exper=("zat2")
 
 # report to ecflow
@@ -32,12 +32,12 @@ do
    elif [[ ${exp} == "kmcw01" ]]
    then
 
-      cp /home/ms/at/kmcw/ECF/DATA/${date}/${run}/MEM_00/ADDGRIB/CLAEF*.grb .
+      cp /sc1/tcwork/zat2/lb/CLAEF/DATA/${date}/${run}/MEM_02/ADDGRIB/CLAEF*.grb .
 
    elif [[ ${exp} == "kmcw02" ]]
    then
 
-      cp /home/ms/at/kmcw/ECF/DATA/${date}/${run}/MEM_01/ADDGRIB/CLAEF*.grb .
+      cp /sc1/tcwork/zat2/lb/CLAEF/DATA/${date}/${run}/MEM_03/ADDGRIB/CLAEF*.grb .
 
    elif [[ ${exp} == "kmcw03" ]]
    then
