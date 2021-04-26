@@ -70,7 +70,7 @@ trans = False
 arch = False
 
 # SBU account, cluster and user name, logport
-account = "atlaef";
+account = "ata01";
 schost  = "cca";
 sthost  = "sc1";
 user    = "zat2";
@@ -166,27 +166,6 @@ def family_dummy(startc1,startc2):
          )
        ],
 
-       # Family check_lbc
-       [
-         Family("check_lbc",
-
-            # Task dummy2
-            [
-               Task("dummy2",
-                  Complete("../../lbc == complete"),
-                  Edit(
-                     NP=1,
-                     CLASS='ts',
-                     NAME="dummy2",
-                  ),
-                  Label("run", ""),
-                  Label("error", ""),
-                  Time(startc1),
-               )
-            ]
-         )
-       ],
-
        # Family check_obs
        [
          Family("check_obs",
@@ -259,73 +238,6 @@ def family_mirror():
              Label("info", ""),
 
           )
-
-def family_lbc():
-
-    # Family LBC
-    return Family("lbc",
-
-       # Task getlbc
-       [
-          Task("getlbc",
-             Trigger("../dummy/ez_trigger/dummy1 == complete"),
-             Event("a"),
-             Edit(
-                NP=1,
-                CLASS='ts',
-                NAME="getlbc",
-             ),
-             Label("run", ""),
-             Label("info", ""),
-             Label("error", ""),
-          )
-       ],
-
-       # Family MEMBER
-       [
-
-         Family("MEM_{:02d}".format(mem),
-
-          # Task divlbc
-          [
-             Task("divlbc",
-                Trigger("../getlbc:a"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 02 and ../../dummy/ez_trigger/dummy1 == complete"),
-                Event("b"),
-                Edit(
-                   NP=1,
-                   CLASS='ts',
-                   MEMBER="{:02d}".format(mem),
-                   NAME="divlbc{:02d}".format(mem),
-                ),
-                Label("run", ""),
-                Label("info", ""),
-                Label("error", ""),
-             )
-          ],
-
-          # Task 901
-          [
-             Task("901",
-                Trigger("divlbc:b"),
-                Complete(":MEMBER == 00 and ../../dummy/ez_trigger/dummy1 == complete or :MEMBER == 02 and ../../dummy/ez_trigger/dummy1 == complete"),
-                Event("c"),
-                Edit(
-                   NP=1,
-                   CLASS='ts',
-                   MEMBER="{:02d}".format(mem),
-                   NAME="901_{:02d}".format(mem),
-                ),
-                Label("run", ""),
-                Label("info", ""),
-                Label("error", ""),
-             )
-          ],
-
-        ) for mem in members
-
-      ]
-    )
 
 def family_obs(starto1,starto2) :
 
@@ -417,7 +329,7 @@ def family_main():
             # Task 927atm
             [
                Task("927",
-                  Trigger("../../lbc/MEM_{:02d}/901 == complete or ../../lbc/MEM_{:02d}/901:c".format(mem,mem)),
+                  Trigger("../../dummy/ez_trigger/dummy1 == complete"),
                   Event("d"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -433,7 +345,7 @@ def family_main():
             # Task 927/surf
             [
                Task("927surf",
-                  Trigger("../../lbc/MEM_{:02d}/901 == complete or ../../lbc/MEM_{:02d}/901:c".format(mem,mem)),
+                  Trigger("../../dummy/ez_trigger/dummy1 == complete"),
 #                  Trigger("pgd == complete"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -748,7 +660,6 @@ defs = Defs().add(
                    # add suite Families and Tasks
                    family_dummy(timing['c00_1'],timing['c00_2']),
                    family_cleaning(),
-                   family_lbc(),
                    family_obs(timing['o00_1'],timing['o00_2']),
                    family_main(),
 #                   family_mirror(),
@@ -760,7 +671,6 @@ defs = Defs().add(
                    # add suite Families and Tasks
                    family_dummy(timing['c06_1'],timing['c06_2']),
                    family_cleaning(),
-                   family_lbc(),
                    family_obs(timing['o06_1'],timing['o06_2']),
                    family_main(),
 #                   family_mirror(),
@@ -772,7 +682,6 @@ defs = Defs().add(
                    # add suite Families and Tasks
                    family_dummy(timing['c12_1'],timing['c12_2']),
                    family_cleaning(),
-                   family_lbc(),
                    family_obs(timing['o12_1'],timing['o12_2']),
                    family_main(),
 #                   family_mirror(),
@@ -784,7 +693,6 @@ defs = Defs().add(
                    # add suite Families and Tasks
                    family_dummy(timing['c18_1'],timing['c18_2']),
                    family_cleaning(),
-                   family_lbc(),
                    family_obs(timing['o18_1'],timing['o18_2']),
                    family_main(),
 #                   family_mirror(),

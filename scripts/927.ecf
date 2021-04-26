@@ -11,7 +11,7 @@ SOURCE:
     '~zat2/ecf/scripts/927.ecf'
 
 TRIGGER:
-    claef/runs/RUN_[HH]/lbc/MEM_[MM]/901 == complete or claef/runs/RUN_[HH]/lbc/MEM_[MM]/901:c
+    claef/runs/RUN_[HH]/dummy/ez_trigger/dummy1 == complete
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)
@@ -116,15 +116,9 @@ ln -sf ${BINMASTER} MASTER
 
 ln -s ${CLIMFILENAME_AROME}${month} const.clim.AROM
 
-if [[ ${mem} == "00" || ${mem} == "02" ]];then
-   ln -s ${CLIMFILENAME_ECMWF_DET}${month} Const.Clim
-   NAM=${NAMEL927}
-   NAMADDS=${NAMEL927ADDS}
-else
-   ln -s ${CLIMFILENAME_ECMWF_GLO}${month} Const.Clim
-   NAM=${NAMEL927_GLO}
-   NAMADDS=${NAMEL927ADDS_GLO}
-fi
+ln -s ${CLIMFILENAME_ECMWF_DET}${month} Const.Clim
+NAM=${NAMEL927}
+NAMADDS=${NAMEL927ADDS}
 
 ln -s ${ECOCLIMAPI} .
 ln -s ${ECOCLIMAPII} .
@@ -184,9 +178,9 @@ while (( $i <= $leadtime )) ; do
   then
      while [[ ${WAITCOUNT} -le 120 ]]
      do 
-        if [[ -f ${MY_DIR}/DATA/${date}/${run}/MEM_01/COUPL/ICMSHBC01+${j} ]]
+        if [[ -f ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-01 ]]
         then
-           ln -s ${MY_DIR}/DATA/${date}/${run}/MEM_01/COUPL/ICMSHBC01+${j} ICMSHE927INIT
+           ln -s ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-01 ICMSHE927INIT
            (( WAITCOUNT = 300 ))
         else
            echo "ATTENTION: dissemination file does not yet exist!!!"
@@ -198,9 +192,9 @@ while (( $i <= $leadtime )) ; do
   else
      while [[ ${WAITCOUNT} -le 120 ]]
      do
-        if [[ -f ${COUPLDIR}/ICMSHBC${mem}+${j} ]]
+        if [[ -f ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-${mem} ]]
         then
-           ln -s ${COUPLDIR}/ICMSHBC${mem}+${j} ICMSHE927INIT
+           ln -s ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-${mem} ICMSHE927INIT
            (( WAITCOUNT = 300 ))
         else
            echo "ATTENTION: dissemination file does not yet exist!!!"
