@@ -111,28 +111,13 @@ cstep=$(printf "%%04d" $lagg)
 cstep2=$(printf "%%03d" $lagg)
 
 (( WAITCOUNT = 0 ))
-if [[ ${mem} == "00" || ${mem} == "02" ]]
+if [[ ${mem} == "00" ]]
 then
    while [[ ${WAITCOUNT} -le 120 ]]
    do
       if [[ -f ${LBCIFS}/ffei${n1date}_${n1run}00+${cstep2} ]]
       then
          ln -s ${LBCIFS}/ffei${n1date}_${n1run}00+${cstep2} ICMSHFPOSINIT
-         (( WAITCOUNT = 300 ))
-      else
-         echo "ATTENTION: dissemination file does not yet exist!!!"
-         ecflow_client --label=info "ATTENTION: dissemination file does not yet exist!!!"
-         (( WAITCOUNT = ${WAITCOUNT} + 1 ))
-         sleep 60
-      fi
-   done
-elif [[ ${mem} == "03" ]] 
-then
-   while [[ ${WAITCOUNT} -le 120 ]]
-   do
-      if [[ -f ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${cstep2}-03 ]]
-      then
-         ln -s ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${cstep2}-03 ICMSHFPOSINIT
          (( WAITCOUNT = 300 ))
       else
          echo "ATTENTION: dissemination file does not yet exist!!!"

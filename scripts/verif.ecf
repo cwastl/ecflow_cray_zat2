@@ -11,7 +11,7 @@ leadtime=%LEADCTL%
 assimc=%ASSIMC%
 
 exper=("zat" "zat2" "kmcw00" "kmcw01" "kmcw02")
-#exper=("zat2")
+#exper=("zat" "zat2" "kmcw01")
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date}"

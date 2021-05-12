@@ -132,7 +132,7 @@ then
    adate3=$(($adate3 + ${mem}))
    seed=${mem}*$adate3
 
-   if [[ ${mem} == "00" || ${mem} == "02" ]]; then
+   if [[ ${mem} == "00" ]]; then
      AT=0.70
      AV=0.80
      AD=0.10
@@ -167,7 +167,7 @@ then
       LEJK=.FALSE.
    fi
 
-   if [[ ${mem} == "00" || ${mem} == "02" ]]; then
+   if [[ ${mem} == "00" ]]; then
       LEJK=.FALSE.
    fi
 
@@ -234,11 +234,6 @@ then
 
    rm -rf fort.4
    
-   if [[ ${mem} == "02" ]]
-   then
-     NAMELMINIM=${NAMELDIR}/namelist_minim_cy43t2_ognss
-   fi
-
    # Fill namelist template -> fort.4
    sed -e "s/{NBPROC}/${NPROC}/" \
        -e "s/{NPRTRV}/${NPRTRV}/" \

@@ -11,7 +11,7 @@ SOURCE:
     '~zat2/ecf/scripts/screensurf.ecf'
 
 TRIGGER:
-    :ASSIM == 1 and claef/runs/RUN_[HH]/main/MEM_[MM]/addsurf == complete and claef/runs/RUN_[HH]/obs/bator == complete
+    :ASSIM == 1 and claef/runs/RUN_[HH]/main/MEM_[MM]/varbccomb == complete and claef/runs/RUN_[HH]/obs/bator == complete
 
 COMPLETE:
     :ASSIM == 0     !run this member without data assimilation

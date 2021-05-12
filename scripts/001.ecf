@@ -105,20 +105,23 @@ else
    exit 90
 fi
 
-if [ -s ${CANARIANAFILESURF} ] ; then            # if CANARI output is available
+if [ -s ${PERTSURFRESULTFILE} ] ; then            # if PERTSURF is used
+   INITFILE_SFX=${PERTSURFRESULTFILE}
+   ecflow_client --label=info "Use pertsurf file"
+elif [ -s ${CANARIANAFILESURF} ] ; then            # if CANARI output is available
    INITFILE_SFX=${CANARIANAFILESURF}
    ecflow_client --label=info "Use canari file"
-elif [ -s ${SOILGUESSFILE1} ] ; then
-   INITFILE_SFX=${SOILGUESSFILE1}
+elif [ -s ${SOILGUESSCTRLFILE1} ] ; then
+   INITFILE_SFX=${SOILGUESSCTRLFILE1}
    ecflow_client --label=info "Use old soil file 1"
-elif [ -s ${SOILGUESSFILE2} ] ; then
-   INITFILE_SFX=${SOILGUESSFILE2}
+elif [ -s ${SOILGUESSCTRLFILE2} ] ; then
+   INITFILE_SFX=${SOILGUESSCTRLFILE2}
    ecflow_client --label=info "Use old soil file 2"
-elif [ -s ${SOILGUESSFILE3} ] ; then
-   INITFILE_SFX=${SOILGUESSFILE3}
+elif [ -s ${SOILGUESSCTRLFILE3} ] ; then
+   INITFILE_SFX=${SOILGUESSCTRLFILE3}
    ecflow_client --label=info "Use old soil file 3"
-elif [ -s ${SOILGUESSFILE4} ] ; then
-   INITFILE_SFX=${SOILGUESSFILE4}
+elif [ -s ${SOILGUESSCTRLFILE4} ] ; then
+   INITFILE_SFX=${SOILGUESSCTRLFILE4}
    ecflow_client --label=info "Use old soil file 4"
 elif [ -s ${C927SURFDIR}/SURFEX_${EXP}_INIT.fa ] ; then
    INITFILE_SFX=${C927SURFDIR}/SURFEX_${EXP}_INIT.fa
@@ -145,8 +148,6 @@ ln -s ${CLIMFILENAME_AROME}${month} Const.Clim
 
 ln -sf ${ECOCLIMAPI} .
 ln -sf ${ECOCLIMAPII} .
-
-ln -sf ${NAMEL001SURFEX} EXSEG1.nam
 
 # run 001
 #-------------------------------------
@@ -213,7 +214,7 @@ do
 
 done
 
-if [[ $mem == "00" || $mem == "02" || $mem == "03" || $stophy -eq 0 ]]
+if [[ $mem == "00" || $stophy -eq 0 ]]
 then 
    
   sed -e   "s/{nproma}/$NPROMA/"\
@@ -233,6 +234,8 @@ then
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001} > $RUNDIR/fort.4
 
+  ln -sf ${NAMEL001SURFEX} $RUNDIR/EXSEG1.nam
+
 else
 
   sed -e   "s/{nproma}/$NPROMA/"\
@@ -250,6 +253,8 @@ else
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001} > $RUNDIR/fort.4
+
+  sed -e   "s/LPERTSURF=.F./LPERTSURF=.T./g" ${NAMEL001SURFEX} > $RUNDIR/EXSEG1.nam
 
 fi  
 

@@ -17,7 +17,7 @@ tasks_clean = ["cleaning"]
 tasks_mirror = ["mirror"]
 tasks_lbc = ["getlbc","divlbc","901","getlbc_gl","gl"]
 tasks_obs = ["getobs","bator","bator3D","pregps"]
-tasks_main = ["927","pgd","927surf","sstex","addsurf","screen","screensurf","canari","minim","001","progrid","addgrib","verif","transfer","archmars"]
+tasks_main = ["927","pgd","927surf","sstex","addsurf","varbccomb","screen","screensurf","canari","minim","pertsurf","001","progrid","addgrib","verif","transfer","archmars"]
 
 hpath="/home/ms/at/zat2/ecf/"
 

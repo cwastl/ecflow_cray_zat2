@@ -32,8 +32,8 @@ schedule = "/usr/local/apps/schedule/1.4/bin/schedule";
 suite_name = "claef"
 
 #ensemble members
-#members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-members = [0,1,2,3]
+members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+#members = [0,1,2,3]
 
 # forecasting range
 fcst = 48
@@ -53,6 +53,7 @@ assimm = 0      #number of members without 3DVar
 assimc = 6      #assimilation cycle in hours
 eda = True      #ensemble data assimilation
 seda = True     #surface eda
+pertsurf = True #perturbation of sfx files
 
 # use EnJK method of Endy yes/no
 enjk = True
@@ -319,6 +320,7 @@ def family_main():
          ASSIM=assimi,
          LEADT=fcst,
          SEDA=seda,
+         PERTS=pertsurf,
          ARCHIV=arch,
          TRANSF=trans),
 
@@ -391,10 +393,26 @@ def family_main():
                )
             ],
 
+            # Task assim/varbccomb
+            [
+               Task("varbccomb",
+                  Trigger(":ASSIM == 1 and addsurf == complete"),
+                  Complete(":ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0"),
+                  Edit(
+                     MEMBER="{:02d}".format(mem),
+                     NP=1,
+                     CLASS='ts',
+                     NAME="varbccomb{:02d}".format(mem),
+                  ),
+                  Label("run", ""),
+                  Label("info", ""),
+               )
+            ],
+
             # Task assim/screening 3D
             [
                Task("screen",
-                  Trigger(":ASSIM == 1 and addsurf == complete and ../../obs/bator3D == complete"),
+                  Trigger(":ASSIM == 1 and varbccomb == complete and ../../obs/bator3D == complete"),
                   Complete(":ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -412,7 +430,7 @@ def family_main():
             # Task assim/screening surface
             [
                Task("screensurf",
-                  Trigger(":ASSIM == 1 and addsurf == complete and ../../obs/bator == complete"),
+                  Trigger(":ASSIM == 1 and varbccomb == complete and ../../obs/bator == complete"),
                   Complete(":ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -461,10 +479,26 @@ def family_main():
                )
             ],
 
+            # Task assim/pertsurf
+            [
+               Task("pertsurf",
+                  Trigger(":ASSIM == 1 and canari == complete"),
+                  Complete(":ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0 or :PERTS == 0 or :MEMBER == 00"),
+                  Edit(
+                     MEMBER="{:02d}".format(mem),
+                     NP=1,
+                     CLASS='ts',
+                     NAME="pertsurf{:02d}".format(mem),
+                  ),
+                  Label("run", ""),
+                  Label("info", ""),
+               )
+            ],
+
             # Task 001
             [
                Task("001",
-                  Trigger("927 == complete and minim == complete and canari == complete"),
+                  Trigger("927 == complete and minim == complete and pertsurf == complete"),
                   Event("e"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -523,7 +557,7 @@ def family_main():
             [
                Task("verif",
                   Time("10:00"),
-                  Complete(":LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03"),
+                  Complete(":LEAD < :LEADT or :MEMBER != 00"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
                      NP=1,

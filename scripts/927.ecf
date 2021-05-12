@@ -159,7 +159,7 @@ while (( $i <= $leadtime )) ; do
   rm -f ICMSHE927INIT
 
   (( WAITCOUNT = 0 ))
-  if [[ ${mem} == "00" || ${mem} == "02" ]]
+  if [[ ${mem} == "00" ]]
   then
      while [[ ${WAITCOUNT} -le 120 ]]
      do
@@ -174,21 +174,6 @@ while (( $i <= $leadtime )) ; do
            sleep 60
         fi
      done      
-  elif [[ ${mem} == "03" ]]
-  then
-     while [[ ${WAITCOUNT} -le 120 ]]
-     do 
-        if [[ -f ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-01 ]]
-        then
-           ln -s ${LBCIFS_ENS}/ffee${n1date}_${n1run}00+${jj}-01 ICMSHE927INIT
-           (( WAITCOUNT = 300 ))
-        else
-           echo "ATTENTION: dissemination file does not yet exist!!!"
-           ecflow_client --label=info "ATTENTION: dissemination file does not yet exist!!!"
-           (( WAITCOUNT = ${WAITCOUNT} + 1 ))
-           sleep 60
-        fi
-     done
   else
      while [[ ${WAITCOUNT} -le 120 ]]
      do
