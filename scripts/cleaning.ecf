@@ -61,12 +61,12 @@ if [ -d ${MY_DIR}/DATA/${p1date}/${p1run} ] ; then
          cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}
          rm -rf 927SURF VARBCCOMB ADDSURF COUPL LBC PROGRID SCREENING SSTEX
       
-         if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001 ] ; then
- 
-            cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001
-            find . -mindepth 1 ! -name "ICMSH*" | xargs rm -rf
-        
-         fi 
+#         if [ -d ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001 ] ; then
+# 
+#            cd ${MY_DIR}/DATA/${p1date}/${p1run}/MEM_${ii}/001
+#            find . -mindepth 1 ! -name "ICMSH*" | xargs rm -rf
+#        
+#         fi 
 
       fi
 

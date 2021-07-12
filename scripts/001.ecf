@@ -90,7 +90,6 @@ export DR_HOOK_SILENT=1
 export DR_HOOK_IGNORE_SIGNALS=-1
 
 # fetch input files 
-
 if [ -s ${MINIMRESULTFILE} ] ; then
    INITFILE_3D=${MINIMRESULTFILE}
    INHYDRO=1
@@ -105,23 +104,25 @@ else
    exit 90
 fi
 
+lpertl=".F."
 if [ -s ${PERTSURFRESULTFILE} ] ; then            # if PERTSURF is used
    INITFILE_SFX=${PERTSURFRESULTFILE}
    ecflow_client --label=info "Use pertsurf file"
+   lpertl=".T."
 elif [ -s ${CANARIANAFILESURF} ] ; then            # if CANARI output is available
    INITFILE_SFX=${CANARIANAFILESURF}
    ecflow_client --label=info "Use canari file"
-elif [ -s ${SOILGUESSCTRLFILE1} ] ; then
-   INITFILE_SFX=${SOILGUESSCTRLFILE1}
+elif [ -s ${SOILGUESSFILE1} ] ; then
+   INITFILE_SFX=${SOILGUESSFILE1}
    ecflow_client --label=info "Use old soil file 1"
-elif [ -s ${SOILGUESSCTRLFILE2} ] ; then
-   INITFILE_SFX=${SOILGUESSCTRLFILE2}
+elif [ -s ${SOILGUESSFILE2} ] ; then
+   INITFILE_SFX=${SOILGUESSFILE2}
    ecflow_client --label=info "Use old soil file 2"
-elif [ -s ${SOILGUESSCTRLFILE3} ] ; then
-   INITFILE_SFX=${SOILGUESSCTRLFILE3}
+elif [ -s ${SOILGUESSFILE3} ] ; then
+   INITFILE_SFX=${SOILGUESSFILE3}
    ecflow_client --label=info "Use old soil file 3"
-elif [ -s ${SOILGUESSCTRLFILE4} ] ; then
-   INITFILE_SFX=${SOILGUESSCTRLFILE4}
+elif [ -s ${SOILGUESSFILE4} ] ; then
+   INITFILE_SFX=${SOILGUESSFILE4}
    ecflow_client --label=info "Use old soil file 4"
 elif [ -s ${C927SURFDIR}/SURFEX_${EXP}_INIT.fa ] ; then
    INITFILE_SFX=${C927SURFDIR}/SURFEX_${EXP}_INIT.fa
@@ -254,7 +255,7 @@ else
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001} > $RUNDIR/fort.4
 
-  sed -e   "s/LPERTSURF=.F./LPERTSURF=.T./g" ${NAMEL001SURFEX} > $RUNDIR/EXSEG1.nam
+  sed -e "s/LPERTSURF=.F./LPERTSURF=${lpertl}/g" ${NAMEL001SURFEX} > $RUNDIR/EXSEG1.nam
 
 fi  
 
@@ -265,14 +266,14 @@ ecflow_client --event=e
 
 rename NODE.001_01 ${LOGDIR}/NODE.001_%ECF_TRYNO%_${mem} NODE.001_01
 
-#ii=0                        #For B-Matrix calculation
-#mkdir -p /sc1/tcwork/zat2/lb/CLAEF/BMATRIX/${date}/${run}/MEM_${mem}
-#while [ $ii -le 6 ]
-#do
-#   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/zat2/lb/CLAEF/BMATRIX/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
-#   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/zat2/lb/CLAEF/BMATRIX/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
-#   let "ii = $ii + 3"
-#done
+ii=0                        #For B-Matrix calculation
+mkdir -p /sc1/tcwork/zat2/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}
+while [ $ii -le 6 ]
+do
+   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/zat2/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
+   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/zat2/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
+   let "ii = $ii + 3"
+done
 
 ii=0                       #For assimilation cycle
 while [ $ii -le ${leadtime} ]

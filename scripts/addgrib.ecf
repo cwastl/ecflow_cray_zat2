@@ -291,11 +291,29 @@ if [ ${leadtime} -gt ${assimc} ]; then
                  rm -f ${GEOGRIB:="xxx"}
 
               fi
-  
+ 
+              scp ${OUTFILE} zat2@ecgate:/scratch/ms/at/zat2/CLAEF/${run}_esuite/MEM_${mem}/
+
+              if [[ ${mem} == "00" ]]
+              then
+
+                ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${OUTFILE} -target /ESUITE/${run}/CLAEF${mem}+${cstep}:${min}".grb" -overwrite -verbose 
+
+                if [[ ${step} -eq ${leadtime} ]]
+                then
+
+                   echo ${date} ${run} > CLAEF.ok
+                   ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source CLAEF.ok -target /ESUITE/${run}/CLAEF.ok -overwrite -verbose
+
+                fi
+
+              fi
+ 
             else 
  
               echo ${OUTFILE} " already there" 
               ecflow_client --label=info "CLAEF${mem}+${cstep}:00.grb already there"
+              scp ${OUTFILE} zat2@ecgate:/scratch/ms/at/zat2/CLAEF/${run}_esuite/MEM_${mem}/
     
             fi
 

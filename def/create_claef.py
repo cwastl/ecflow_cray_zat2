@@ -70,6 +70,9 @@ trans = False
 #archive Files to MARS
 arch = False
 
+#run harp
+harpi = True
+
 # SBU account, cluster and user name, logport
 account = "ata01";
 schost  = "cca";
@@ -239,6 +242,31 @@ def family_mirror():
              Label("info", ""),
 
           )
+
+def family_harp():
+
+   # Family HARP
+   return Family("harp",
+
+      Edit(LEADT=fcst,
+           ACCOUNT=account,
+           HARPI=harpi),
+
+         # Task harpio
+         [
+            Task("harpio",
+                Trigger(":HARPI == 1 and ../main == complete"),
+                Complete(":LEAD < :LEADT or :HARPI == 0"),
+                Edit(
+                   ECF_JOBOUT="%ECF_HOME%/ecf_out/ecf.out",
+                   ECF_JOB_CMD="{} {} ecgb %ECF_JOB% %ECF_JOBOUT%".format(schedule, user),
+                   NAME="harpio",
+                ),
+                Label("run", ""),
+                Label("info", ""),
+            ) 
+         ],
+      )
 
 def family_obs(starto1,starto2) :
 
@@ -556,7 +584,7 @@ def family_main():
             # Task verif
             [
                Task("verif",
-                  Time("10:00"),
+                  Time("04:30"),
                   Complete(":LEAD < :LEADT or :MEMBER != 00"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -697,6 +725,7 @@ defs = Defs().add(
                    family_obs(timing['o00_1'],timing['o00_2']),
                    family_main(),
 #                   family_mirror(),
+                   family_harp(),
                 ),
 
                 Family("RUN_06",
@@ -708,6 +737,7 @@ defs = Defs().add(
                    family_obs(timing['o06_1'],timing['o06_2']),
                    family_main(),
 #                   family_mirror(),
+                   family_harp(),
                 ),
 
                 Family("RUN_12",
@@ -719,6 +749,7 @@ defs = Defs().add(
                    family_obs(timing['o12_1'],timing['o12_2']),
                    family_main(),
 #                   family_mirror(),
+                   family_harp(),
                 ),
 
                 Family("RUN_18",
@@ -730,6 +761,7 @@ defs = Defs().add(
                    family_obs(timing['o18_1'],timing['o18_2']),
                    family_main(),
 #                   family_mirror(),
+                   family_harp(),
                ),
             )
          )

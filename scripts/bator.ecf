@@ -23,7 +23,7 @@ MAIN FRAME:
 OPERATOR:
     - If this task fails, rerun the task
     - If failure persists, set :ASSIM == 0 in family claef/runs/RUN_[HH]/obs and requeue family (run without data assimilation), set :ASSIM == 0 in family
-      claef/runs/RUN_[HH]/main. Don't forget to remove :ASSIM local variable in family claef/runs/RUN_[HH]/main/MEM_[MM], after run ended successfully.)
+      claef/runs/RUN_[HH]/main. Don't forget to set :ASSIM == 1 back in family claef/runs/RUN_[HH]/obs and to remove :ASSIM local variable in family claef/runs/RUN_[HH]/main/MEM_[MM], after run ended successfully.)
     - Please report the error:
       Every day between 6-20 UTC please call:
       1.) +4369981568924, Mr. Clemens Wastl

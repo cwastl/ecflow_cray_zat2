@@ -10,8 +10,9 @@ user=%USER%
 leadtime=%LEADCTL%
 assimc=%ASSIMC%
 
-exper=("zat" "zat2" "kmcw00" "kmcw01" "kmcw02")
-#exper=("zat" "zat2" "kmcw01")
+#exper=("zat" "zat2" "kmcw00" "kmcw01" "kmcw02")
+#exper=("zat" "zat2" "kmcw00")
+exper=("kmcw00")
 
 # report to ecflow
 ecflow_client --label=run "The date is now ${date}"
@@ -50,7 +51,7 @@ do
 
    fi
 
-   mkdir neu
+   mkdir -p neu
 
    i=0
    while (( ${i} <= ${leadtime} ))

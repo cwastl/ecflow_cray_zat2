@@ -48,7 +48,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20210510 20221231 1
+    repeat date DATUM 20210610 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -280,14 +280,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'verif00'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -446,14 +446,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'verif01'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -612,14 +612,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'verif02'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_02/addgrib:g
@@ -778,14 +778,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'verif03'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_03/addgrib:g
@@ -944,14 +944,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'verif04'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_04/addgrib:g
@@ -1110,14 +1110,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'verif05'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_05/addgrib:g
@@ -1276,14 +1276,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'verif06'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_06/addgrib:g
@@ -1442,14 +1442,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'verif07'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_07/addgrib:g
@@ -1608,14 +1608,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'verif08'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_08/addgrib:g
@@ -1774,14 +1774,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'verif09'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_09/addgrib:g
@@ -1940,14 +1940,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'verif10'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_10/addgrib:g
@@ -2106,14 +2106,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'verif11'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_11/addgrib:g
@@ -2272,14 +2272,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'verif12'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_12/addgrib:g
@@ -2438,14 +2438,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'verif13'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_13/addgrib:g
@@ -2604,14 +2604,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'verif14'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_14/addgrib:g
@@ -2770,14 +2770,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'verif15'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_15/addgrib:g
@@ -2936,14 +2936,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'verif16'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_16/addgrib:g
@@ -2967,6 +2967,19 @@ suite claef
             label run ""
             label info ""
         endfamily
+      endfamily
+      family harp
+        edit ACCOUNT 'ata01'
+        edit HARPI '1'
+        edit LEADT '48'
+        task harpio
+          complete :LEAD < :LEADT or :HARPI == 0
+          trigger :HARPI == 1 and ../main == complete
+          edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'harpio'
+          label run ""
+          label info ""
       endfamily
     endfamily
     family RUN_06
@@ -3193,14 +3206,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'verif00'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -3359,14 +3372,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'verif01'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -3525,14 +3538,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'verif02'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_02/addgrib:g
@@ -3691,14 +3704,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'verif03'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_03/addgrib:g
@@ -3857,14 +3870,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'verif04'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_04/addgrib:g
@@ -4023,14 +4036,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'verif05'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_05/addgrib:g
@@ -4189,14 +4202,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'verif06'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_06/addgrib:g
@@ -4355,14 +4368,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'verif07'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_07/addgrib:g
@@ -4521,14 +4534,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'verif08'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_08/addgrib:g
@@ -4687,14 +4700,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'verif09'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_09/addgrib:g
@@ -4853,14 +4866,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'verif10'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_10/addgrib:g
@@ -5019,14 +5032,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'verif11'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_11/addgrib:g
@@ -5185,14 +5198,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'verif12'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_12/addgrib:g
@@ -5351,14 +5364,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'verif13'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_13/addgrib:g
@@ -5517,14 +5530,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'verif14'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_14/addgrib:g
@@ -5683,14 +5696,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'verif15'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_15/addgrib:g
@@ -5849,14 +5862,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'verif16'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_16/addgrib:g
@@ -5880,6 +5893,19 @@ suite claef
             label run ""
             label info ""
         endfamily
+      endfamily
+      family harp
+        edit ACCOUNT 'ata01'
+        edit HARPI '1'
+        edit LEADT '48'
+        task harpio
+          complete :LEAD < :LEADT or :HARPI == 0
+          trigger :HARPI == 1 and ../main == complete
+          edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'harpio'
+          label run ""
+          label info ""
       endfamily
     endfamily
     family RUN_12
@@ -6106,14 +6132,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'verif00'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -6272,14 +6298,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'verif01'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -6438,14 +6464,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'verif02'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_02/addgrib:g
@@ -6604,14 +6630,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'verif03'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_03/addgrib:g
@@ -6770,14 +6796,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'verif04'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_04/addgrib:g
@@ -6936,14 +6962,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'verif05'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_05/addgrib:g
@@ -7102,14 +7128,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'verif06'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_06/addgrib:g
@@ -7268,14 +7294,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'verif07'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_07/addgrib:g
@@ -7434,14 +7460,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'verif08'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_08/addgrib:g
@@ -7600,14 +7626,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'verif09'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_09/addgrib:g
@@ -7766,14 +7792,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'verif10'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_10/addgrib:g
@@ -7932,14 +7958,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'verif11'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_11/addgrib:g
@@ -8098,14 +8124,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'verif12'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_12/addgrib:g
@@ -8264,14 +8290,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'verif13'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_13/addgrib:g
@@ -8430,14 +8456,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'verif14'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_14/addgrib:g
@@ -8596,14 +8622,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'verif15'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_15/addgrib:g
@@ -8762,14 +8788,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'verif16'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_16/addgrib:g
@@ -8793,6 +8819,19 @@ suite claef
             label run ""
             label info ""
         endfamily
+      endfamily
+      family harp
+        edit ACCOUNT 'ata01'
+        edit HARPI '1'
+        edit LEADT '48'
+        task harpio
+          complete :LEAD < :LEADT or :HARPI == 0
+          trigger :HARPI == 1 and ../main == complete
+          edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'harpio'
+          label run ""
+          label info ""
       endfamily
     endfamily
     family RUN_18
@@ -9019,14 +9058,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'verif00'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -9185,14 +9224,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'verif01'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -9351,14 +9390,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'verif02'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_02/addgrib:g
@@ -9517,14 +9556,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'verif03'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_03/addgrib:g
@@ -9683,14 +9722,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'verif04'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_04/addgrib:g
@@ -9849,14 +9888,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'verif05'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_05/addgrib:g
@@ -10015,14 +10054,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'verif06'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_06/addgrib:g
@@ -10181,14 +10220,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'verif07'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_07/addgrib:g
@@ -10347,14 +10386,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'verif08'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_08/addgrib:g
@@ -10513,14 +10552,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'verif09'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_09/addgrib:g
@@ -10679,14 +10718,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'verif10'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_10/addgrib:g
@@ -10845,14 +10884,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'verif11'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_11/addgrib:g
@@ -11011,14 +11050,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'verif12'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_12/addgrib:g
@@ -11177,14 +11216,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'verif13'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_13/addgrib:g
@@ -11343,14 +11382,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'verif14'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_14/addgrib:g
@@ -11509,14 +11548,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'verif15'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_15/addgrib:g
@@ -11675,14 +11714,14 @@ suite claef
             label error ""
             event g
           task verif
-            complete :LEAD < :LEADT or :MEMBER == 01 or :MEMBER == 02 or :MEMBER == 03
+            complete :LEAD < :LEADT or :MEMBER != 00
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'verif16'
             edit CLASS 'ns'
             label run ""
             label info ""
-            time 10:00
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_16/addgrib:g
@@ -11706,6 +11745,19 @@ suite claef
             label run ""
             label info ""
         endfamily
+      endfamily
+      family harp
+        edit ACCOUNT 'ata01'
+        edit HARPI '1'
+        edit LEADT '48'
+        task harpio
+          complete :LEAD < :LEADT or :HARPI == 0
+          trigger :HARPI == 1 and ../main == complete
+          edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'harpio'
+          label run ""
+          label info ""
       endfamily
     endfamily
   endfamily

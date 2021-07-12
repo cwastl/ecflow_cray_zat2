@@ -148,7 +148,7 @@ LINISNOW2=.FALSE.
 [[ -s ./snow_sat ]] && LINISNOW=".TRUE."
 [[ -s ./snow_mod ]] && LINISNOW2=".TRUE."
 [[ -s ./laketemperatures.txt ]] && LINILAKE=".TRUE."
-sed -e "s/{LINILAKE}/${LINILAKE}/g" ${NAMELOIMAIN} >./OPTIONS.nam
+sed -e "s/{LINILAKE}/${LINILAKE}/g" ${NAMELOIMAIN} >./EXSEG1.nam
 
 if [ ${seda} -eq 1 ]
 then
@@ -254,8 +254,8 @@ try_guess=1
 found=0
 while (( $try_guess <= 9 )) && (( $found < 1 )) # loop through all possible guessfiles
 do
-   ecflow_client --label=info "Try ctrlguess file ${try_guess}"
-   eval "actfile=\$SOILGUESSCTRLFILE${try_guess}"
+   ecflow_client --label=info "Try guess file ${try_guess}"
+   eval "actfile=\$SOILGUESSFILE${try_guess}"
 
    if [ -s ${actfile} ]
    then
