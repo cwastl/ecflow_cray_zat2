@@ -5,10 +5,8 @@
 
 date=%DATUM%
 run=%LAUF%
-mem=%MEMBER%
 user=%USER%
 leadtime=%LEADCTL%
-assimc=%ASSIMC%
 
 #exper=("zat" "zat2" "kmcw00" "kmcw01" "kmcw02")
 #exper=("zat" "zat2" "kmcw00")

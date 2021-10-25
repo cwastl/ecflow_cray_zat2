@@ -1,7 +1,7 @@
 # 4.17.2
 suite claef
   edit ECF_EXTN '.ecf'
-  edit ECF_TRIES '2'
+  edit ECF_TRIES '1'
   edit ASSIMC '3'
   edit ECF_INCLUDE '/home/ms/at/zat2/ecf/include'
   edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 %SCHOST% %ECF_JOB% %ECF_JOBOUT%'
@@ -48,7 +48,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20211025 20221231 1
+    repeat date DATUM 20210917 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -89,7 +89,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 06:00
+            time 10:15
         endfamily
       endfamily
       task cleaning
@@ -245,7 +245,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -280,6 +279,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -403,7 +411,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -438,6 +445,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -464,23 +480,14 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
           edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
           edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
           edit NAME 'harpio'
-          label run ""
-          label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
           label run ""
           label info ""
       endfamily
@@ -518,7 +525,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 08:00
+            time 08:15
         endfamily
       endfamily
       task cleaning
@@ -674,7 +681,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -709,6 +715,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -832,7 +847,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -867,6 +881,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -893,9 +916,8 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
@@ -904,21 +926,13 @@ suite claef
           edit NAME 'harpio'
           label run ""
           label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
-          label run ""
-          label info ""
       endfamily
     endfamily
     family RUN_06
       edit VORHI '6'
-      edit LEADCTL '3'
+      edit LEADCTL '6'
       edit LAUF '06'
-      edit LEAD '3'
+      edit LEAD '6'
       family dummy
         family ez_trigger
           task dummy1
@@ -947,7 +961,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 11:00
+            time 11:15
         endfamily
       endfamily
       task cleaning
@@ -1103,7 +1117,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -1138,6 +1151,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -1261,7 +1283,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -1296,6 +1317,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -1322,23 +1352,14 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
           edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
           edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
           edit NAME 'harpio'
-          label run ""
-          label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
           label run ""
           label info ""
       endfamily
@@ -1376,7 +1397,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 14:00
+            time 14:15
         endfamily
       endfamily
       task cleaning
@@ -1532,7 +1553,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -1567,6 +1587,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -1690,7 +1719,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -1725,6 +1753,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -1751,9 +1788,8 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
@@ -1762,21 +1798,13 @@ suite claef
           edit NAME 'harpio'
           label run ""
           label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
-          label run ""
-          label info ""
       endfamily
     endfamily
     family RUN_12
       edit VORHI '6'
-      edit LEADCTL '3'
+      edit LEADCTL '6'
       edit LAUF '12'
-      edit LEAD '3'
+      edit LEAD '6'
       family dummy
         family ez_trigger
           task dummy1
@@ -1805,7 +1833,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 18:00
+            time 17:15
         endfamily
       endfamily
       task cleaning
@@ -1961,7 +1989,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -1996,6 +2023,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -2119,7 +2155,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -2154,6 +2189,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -2180,23 +2224,14 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
           edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
           edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
           edit NAME 'harpio'
-          label run ""
-          label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
           label run ""
           label info ""
       endfamily
@@ -2234,7 +2269,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 20:00
+            time 20:15
         endfamily
       endfamily
       task cleaning
@@ -2390,7 +2425,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -2425,6 +2459,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -2548,7 +2591,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -2583,6 +2625,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -2609,9 +2660,8 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
@@ -2620,21 +2670,13 @@ suite claef
           edit NAME 'harpio'
           label run ""
           label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
-          label run ""
-          label info ""
       endfamily
     endfamily
     family RUN_18
       edit VORHI '6'
-      edit LEADCTL '3'
+      edit LEADCTL '6'
       edit LAUF '18'
-      edit LEAD '3'
+      edit LEAD '6'
       family dummy
         family ez_trigger
           task dummy1
@@ -2663,7 +2705,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 23:00
+            time 23:15
         endfamily
       endfamily
       task cleaning
@@ -2819,7 +2861,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -2854,6 +2895,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -2977,7 +3027,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -3012,6 +3061,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -3038,23 +3096,14 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
           edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
           edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
           edit NAME 'harpio'
-          label run ""
-          label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
           label run ""
           label info ""
       endfamily
@@ -3248,7 +3297,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_00'
-            edit PERTSU '0'
             edit MEMBER '00'
             edit STEPS15 '0'
             edit NP '360'
@@ -3283,6 +3331,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '00'
+            edit NAME 'verif00'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_00/addgrib:g
@@ -3406,7 +3463,6 @@ suite claef
           task 001
             trigger 927 == complete and minim == complete and pertsurf == complete
             edit NAME '001_01'
-            edit PERTSU '0'
             edit MEMBER '01'
             edit STEPS15 '0'
             edit NP '360'
@@ -3441,6 +3497,15 @@ suite claef
             label info ""
             label error ""
             event g
+          task verif
+            complete :LEAD < :LEADT or :MEMBER != 00
+            edit NP '1'
+            edit MEMBER '01'
+            edit NAME 'verif01'
+            edit CLASS 'ns'
+            label run ""
+            label info ""
+            time 04:30
           task transfer
             complete :LEAD < :LEADT or :TRANSF == 0
             trigger :TRANSF == 1 and ../MEM_01/addgrib:g
@@ -3467,23 +3532,14 @@ suite claef
       endfamily
       family harp
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
         edit HARPI '1'
-        edit VERIF '0'
+        edit LEADT '48'
         task harpio
           complete :LEAD < :LEADT or :HARPI == 0
           trigger :HARPI == 1 and ../main == complete
           edit ECF_JOBOUT '%ECF_HOME%/ecf_out/ecf.out'
           edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
           edit NAME 'harpio'
-          label run ""
-          label info ""
-        task verif
-          complete :LEAD < :LEADT or :VERIF == 0
-          trigger :VERIF == 1 and ../main == complete
-          edit NP '1'
-          edit NAME 'verif'
-          edit CLASS 'ns'
           label run ""
           label info ""
       endfamily
