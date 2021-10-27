@@ -4,7 +4,7 @@ TASK:
     claef/runs/RUN_[HH]/dummy/check_obs/dummy2
     claef/runs/RUN_[HH]/dummy/check_main/dummy2
 
-    [HH]=00,06,12,18
+    [HH]=00,03,06,09,12,15,18,21
 
 DESCRIPTION:
     This is a dummy task which is only launched if important parts of the suite are delayed or went wrong. This task runs at specific times, but it is usually
@@ -35,7 +35,7 @@ OPERATOR:
       tasks follow its manpages. If suite is just delayed, complete this task when checked family is complete.
     - Please report the error:
       Every day between 6-20 UTC please call:
-      1.) +4369981568924, Mr. Clemens Wastl
+      1.) +436648409158, Mr. Clemens Wastl
       2.) +436802040400, Mr. Florian Weidle
       3.) +436767085070, Mr. Christoph Wittmann
       - Please report to: claef_timecrit_mgmt@lists.ecmwf.int

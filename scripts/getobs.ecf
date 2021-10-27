@@ -2,7 +2,7 @@
 TASK:
     claef/runs/RUN_[HH]/obs/getobs
 
-    [HH]=00,06,12,18
+    [HH]=00,03,06,09,12,15,18,21
 
 DESCRIPTION:
     This task fetches observations from ZAMG
@@ -25,7 +25,7 @@ OPERATOR:
       claef/runs/RUN_[HH]/main. Don't forget to remove :ASSIM local variable in family claef/runs/RUN_[HH]/main/MEM_[MM], after run ended successfully.)
     - Please report the error:
       Every day between 6-20 UTC please call:
-      1.) +4369981568924, Mr. Clemens Wastl
+      1.) +436648409158, Mr. Clemens Wastl
       2.) +436802040400, Mr. Florian Weidle
       3.) +436767085070, Mr. Christoph Wittmann
       - Please report to: claef_timecrit_mgmt@lists.ecmwf.int

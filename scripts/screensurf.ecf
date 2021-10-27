@@ -2,7 +2,7 @@
 TASK:
     claef/runs/RUN_[HH]/main/MEM_[MM]/screensurf
 
-    [HH]=00,06,12,18; [MM]=00,01,..,16
+    [HH]=00,03,06,09,12,15,18,21; [MM]=00,01,..,16
 
 DESCRIPTION:
     This task makes quality check for surface observations
@@ -25,7 +25,7 @@ OPERATOR:
     - If failure persists, set task == complete and set claef/runs/RUN_[HH]/main/MEM_[MM]/canari == complete (run without surface assimilation)
     - Please report the error:
       Every day between 6-20 UTC please call:
-      1.) +4369981568924, Mr. Clemens Wastl
+      1.) +436648409158, Mr. Clemens Wastl
       2.) +436802040400, Mr. Florian Weidle
       3.) +436767085070, Mr. Christoph Wittmann
       - Please report to: claef_timecrit_mgmt@lists.ecmwf.int
