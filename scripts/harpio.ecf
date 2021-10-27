@@ -5,7 +5,8 @@ TASK:
     [HH]=00,03,06,09,12,15,18,21
 
 DESCRIPTION:
-    This task extracts files for harp and transfers them to ZAMG
+    This task extracts files for harp and transfers them to ZAMG.
+    This tasks runs on ecgate and runs very long (several hours).
 
 SOURCE:
     '~zat2/ecf/scripts/harpio.ecf'
@@ -42,6 +43,7 @@ run=%LAUF%
 user=%USER%
 leadtime=%LEAD%
 
+set +e
 module load R/3.6.3
 module load proj4/5.2.0
 
@@ -92,6 +94,10 @@ do
       do
 
          ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${OKFILE_E} -target /HARP/CLAEF_ESUITE/${OKFILE_E} -overwrite -verbose -mailto clemens.wastl@zamg.ac.at -onfailure
+
+         sleep 10
+
+         ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${OKFILE_E} -target /HARP/CLAEF_ESUITE/${OKFILE_E} -overwrite -verbose -mailto clemens.wastl@zamg.ac.at -onfailure    #just for security because of problems with file system at ZAMG
 
          sleep 10
          CODEREP2=$?
