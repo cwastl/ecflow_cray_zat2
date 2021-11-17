@@ -65,6 +65,9 @@ if [ ${mem} == "00" ] ; then
 else
   ADDGRIBOUTS=${ADDGRIBOUTSIZE}
 fi
+(( ADDGRIBOUTS1=${ADDGRIBOUTS}*0.95 ))
+(( ADDGRIBOUTS2=${ADDGRIBOUTS}*1.05 ))
+
 
 if [ ${leadtime} -gt ${assimc} ]; then
   block=1
@@ -85,7 +88,7 @@ if [ ${leadtime} -gt ${assimc} ]; then
      do
 
        INFILE=${ADDGRIBDIR}/CLAEF${mem}+${cstep}:00.grb
-       if [ -s ${INFILE} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) == ${ADDGRIBOUTS} ] ; then 
+       if [ -s ${INFILE} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -gt ${ADDGRIBOUTS1} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -lt ${ADDGRIBOUTS2} ]; then 
   
          ii=0
          while (( ${jj} <= ${blocko} ))
@@ -126,7 +129,7 @@ if [ ${leadtime} -gt ${assimc} ]; then
          do
 
             ecflow_client --label=info "Copying ${filen}.gz"
-            ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${ADDGRIBDIR}/${filen}.gz -target /../../CLAEF/PRODUCTION/GRIB/TMP/MEM_${mem}/${filen}.gz -overwrite -verbose #-mailto clemens.wastl@zamg.ac.at -onfailure
+            ectrans -gateway zaaecm99.zamg.ac.at -remote nwpmodelle -put -source ${ADDGRIBDIR}/${filen}.gz -target /TMP/MEM_${mem}/${filen}.gz -overwrite -verbose #-mailto clemens.wastl@zamg.ac.at -onfailure
 
             CODEREP=$?
             if (( ${CODEREP} !=0 ))
@@ -146,7 +149,7 @@ if [ ${leadtime} -gt ${assimc} ]; then
                while (( ${CHECKTRANSOK} <= 20 ))
                do
    
-                  ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${ADDGRIBDIR}/${BOKFILE} -target /../../CLAEF/PRODUCTION/GRIB/OKAY/${BOKFILE} -overwrite -verbose #-mailto clemens.wastl@zamg.ac.at -onfailure
+                  ectrans -gateway zaaecm99.zamg.ac.at -remote nwpmodelle -put -source ${ADDGRIBDIR}/${BOKFILE} -target /OKAY/${BOKFILE} -overwrite -verbose #-mailto clemens.wastl@zamg.ac.at -onfailure
 
                   CODEREP2=$?
                   if (( ${CODEREP2} !=0 ))
@@ -202,13 +205,13 @@ if [ ${leadtime} -gt ${assimc} ]; then
    
   done
 
-  if [[ ${mem} == "00" ]]
-  then
- 
-     ecflow_client --label=info "Copying sfx file"
-     ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${C001DIR}/ICMSH${EXP}+0000.sfx -target /../../CLAEF/PRODUCTION/SOILANA/ICMSHAROM+0000.sfx -overwrite -verbose
-   
-  fi
+#  if [[ ${mem} == "00" ]]
+#  then
+# 
+#     ecflow_client --label=info "Copying sfx file"
+#     ectrans -gateway zaaecm99.zamg.ac.at -remote nwpmodelle -put -source ${C001DIR}/ICMSH${EXP}+0000.sfx -target /../../CLAEF/PRODUCTION/SOILANA/ICMSHAROM+0000.sfx -overwrite -verbose
+#   
+#  fi
 
 fi
 

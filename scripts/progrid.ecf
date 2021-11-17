@@ -116,14 +116,18 @@ if [ ${leadtime} -gt ${assimc} ]; then
         else
           FPOSOUTS=${FPOSOUTSIZE}
         fi
+          (( FPOSOUTS1=${FPOSOUTS}*0.95 ))
+          (( FPOSOUTS2=${FPOSOUTS}*1.05 ))
       else
         FPOSOUTS=${FPOSOUTSIZE15}
+          (( FPOSOUTS1=${FPOSOUTSIZE15}*0.95 ))
+          (( FPOSOUTS2=${FPOSOUTSIZE15}*1.05 ))
       fi
       INFILE=${C001DIR}/${C001File}/PF${EXP}${EXP}+${cstep}:${min}
       (( WAITCOUNT = 0 ))
       while [[ ${WAITCOUNT} -le 60 ]]
       do
-        if [ -s ${INFILE} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) == ${FPOSOUTS} ] ; then
+        if [ -s ${INFILE} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -gt ${FPOSOUTS1} ]  && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -lt ${FPOSOUTS2} ]; then
           ln -sf ${INFILE} fort.11
           status=0
           ecflow_client --label=info "Prepare CLAEF${mem}+${cstep}:${min}.grb"
