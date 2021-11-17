@@ -44,6 +44,20 @@ if [[ $HOST = @(cc*) ]]; then
   ln -sf $_pbs_outputfile $_running_output 
 fi
 
+MARS_FOR_BOND_DATASET=%MARS_FOR_BOND_DATASET:345%
+
+if [[ %MARS_DOUBLE_ARCHIVE:0% != 0 ]]; then 
+  export MARS_DOUBLE_ARCHIVE=1
+fi
+
+if [[ %ECFS_DOUBLE_ARCHIVE:0% != 0 ]]; then
+  export ECFS_DOUBLE_ARCHIVE=1
+fi
+
+if [[ %DRY_RUN:0% != 0 ]]; then
+  export BOND_DHS_DRY_RUN_RETRIEVE=true
+fi
+
 # Trap any calls to exit and errors caught by the -e flag
 trap ERROR 0
 

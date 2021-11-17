@@ -32,8 +32,8 @@ schedule = "/usr/local/apps/schedule/1.4/bin/schedule";
 suite_name = "claef"
 
 #ensemble members
-#members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-members = [0,1]
+members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+#members = [0,1]
 
 # forecasting range
 fcst = 48
@@ -51,33 +51,33 @@ step15 = False
 assimi = True   #assimilation yes/no
 assimm = 0      #number of members without 3DVar
 assimc = 3      #assimilation cycle in hours
-eda = False      #ensemble data assimilation
-seda = False     #surface eda
-pertsurf = False #perturbation of sfx files
+eda = True      #ensemble data assimilation
+seda = True     #surface eda
+pertsurf = True #perturbation of sfx files
 
 # use EnJK method of Endy yes/no
-enjk = False
+enjk = True
 
 # use stochastic physics model error representation yes/no
-stophy = False
+stophy = True
 
 # block transfer to speed up
 blocks = 6             #block size
 
 #transfer Files to ZAMG
-trans = False
+trans = True
 
 #archive Files to MARS
-arch = False
+arch = True
 
 #run harp
-harpi = True
+harpi = False
 
 #save Files vor Ment verif tool
 verifm = False
 
 # SBU account, cluster and user name, logport
-account = "ata01";
+account = "atlaef";
 schost  = "cca";
 sthost  = "sc1";
 user    = "zat2";
@@ -87,22 +87,22 @@ logport = 38776;
 timing = {
   'comp' : '00:30',
   'clean' : '05:00',
-  'o00_1' : '0155',
-  'o00_2' : '0205',
-  'o03_1' : '0455',
-  'o03_2' : '0505',
-  'o06_1' : '0755',
-  'o06_2' : '0805',
-  'o09_1' : '1055',
-  'o09_2' : '1105',
-  'o12_1' : '1355',
-  'o12_2' : '1405',
-  'o15_1' : '1655',
-  'o15_2' : '1705',
-  'o18_1' : '1955',
-  'o18_2' : '2005',
-  'o21_1' : '2255',
-  'o21_2' : '2305',
+  'o00_1' : '0145',
+  'o00_2' : '0155',
+  'o03_1' : '0445',
+  'o03_2' : '0455',
+  'o06_1' : '0745',
+  'o06_2' : '0755',
+  'o09_1' : '1045',
+  'o09_2' : '1055',
+  'o12_1' : '1345',
+  'o12_2' : '1355',
+  'o15_1' : '1645',
+  'o15_2' : '1655',
+  'o18_1' : '1945',
+  'o18_2' : '1955',
+  'o21_1' : '2245',
+  'o21_2' : '2255',
   'c00_1' : '02:30',
   'c00_2' : '06:00',
   'c03_1' : '05:30',
@@ -687,6 +687,12 @@ defs = Defs().add(
                 KOPPLUNG=couplf,
                 ASSIMC=assimc,
  
+                # some variables for MARS archive
+                MARS_FOR_BOND_DATASET=345,
+                BOND_DHS_DRY_RUN_RETRIEVE=0,
+                MARS_DOUBLE_ARCHIVE=0,
+                ECFS_DOUBLE_ARCHIVE=0,
+
                 # Running jobs remotely on HPCF
                 ECF_OUT ='/%STHOST%/tcwork/' + user + '/sb/CLAEF', # jobs output dir on remote host
                 ECF_LOGHOST='%SCHOST%-log',                     # remote log host

@@ -111,7 +111,7 @@ cstep=$(printf "%%04d" $lagg)
 cstep2=$(printf "%%03d" $lagg)
 
 (( WAITCOUNT = 0 ))
-if [[ ${mem} == "00" || ${mem} == "01" ]]
+if [[ ${mem} == "00" ]]
 then
    while [[ ${WAITCOUNT} -le 120 ]]
    do

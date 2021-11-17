@@ -159,7 +159,7 @@ while (( $i <= $leadtime )) ; do
   rm -f ICMSHE927INIT
 
   (( WAITCOUNT = 0 ))
-  if [[ ${mem} == "00" || ${mem} == "01" ]]
+  if [[ ${mem} == "00" ]]
   then
      while [[ ${WAITCOUNT} -le 120 ]]
      do

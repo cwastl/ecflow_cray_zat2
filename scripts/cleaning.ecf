@@ -83,8 +83,11 @@ fi
 
 [[ -d ${MY_DIR}/DATA/${p20date}/${p20run} ]] && rm -rf ${MY_DIR}/DATA/${p20date}/${p20run}
 
-[[ -d ${MY_DIR}/DATA/${psdate} ]] && rm -rf ${MY_DIR}/DATA/${psdate}
-
+if [ ${run} == "00" ]; then
+   if [ -d ${MY_DIR}/DATA/${psdate} ]; then
+      rm -rf ${MY_DIR}/DATA/${psdate}
+   fi
+fi
 
 ecflow_client --label=info "Cleaning Mirror"
 
@@ -111,6 +114,10 @@ done
 
 [[ -d ${MIRRORFS}/DATA/${p20date}/${p20run} ]] && rm -rf ${MIRRORFS}/DATA/${p20date}/${p20run}
 
-[[ -d ${MIRRORFS}/DATA/${psdate} ]] && rm -rf ${MIRRORFS}/DATA/${psdate}
+if [ ${run} == "00" ]; then
+   if [ -d ${MIRRORFS}/DATA/${psdate} ]; then
+      rm -rf ${MIRRORFS}/DATA/${psdate}
+   fi
+fi
 
 %include <tail.h>
