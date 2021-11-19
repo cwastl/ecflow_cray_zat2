@@ -38,6 +38,8 @@ source ~/.kshrc
 %include <qsub2.h>
 %include <head.h>
 
+echo $(date)
+
 date=%DATUM%
 run=%LAUF%
 user=%USER%
@@ -74,5 +76,7 @@ if [[ $? -eq 0 ]]
 then
    ecflow_client --label=info "harp io done"
 fi
+
+echo $(date)
 
 %include <tail.h>
