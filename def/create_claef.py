@@ -427,7 +427,7 @@ def family_main():
             # Task assim/sstex
             [
                Task("sstex",
-                  Trigger(":ASSIM == 1 and ../../obs/getobs == complete".format(mem)),
+                  Trigger(":ASSIM == 1 and ../../obs/getobs == complete and ../MEM_{:02d}/927:d".format(mem)),
                   Complete(":ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
@@ -561,7 +561,7 @@ def family_main():
             # Task 001
             [
                Task("001",
-                  Trigger("927 == complete and minim == complete and pertsurf == complete"),
+                  Trigger("927 == complete and minim == complete and canari == complete and pertsurf == complete"),
                   Event("e"),
                   Edit(
                      MEMBER="{:02d}".format(mem),

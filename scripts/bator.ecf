@@ -40,6 +40,8 @@ run=%LAUF%
 files=%STHOST%
 user=%USER%
 
+set +e
+
 ############################Run setup script for environment#########################
 . /${files}/home/${user}/CLAEF/SCR/setup_cy43.ksh $run $date 999 999 999 $user $files
 #####################################################################################

@@ -52,7 +52,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20211108 20221231 1
+    repeat date DATUM 20211124 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -170,7 +170,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -247,7 +247,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -328,7 +328,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -405,7 +405,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -486,7 +486,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -563,7 +563,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -644,7 +644,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -721,7 +721,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -802,7 +802,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -879,7 +879,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -960,7 +960,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -1037,7 +1037,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -1118,7 +1118,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -1195,7 +1195,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -1276,7 +1276,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -1353,7 +1353,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -1434,7 +1434,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -1511,7 +1511,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -1592,7 +1592,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -1669,7 +1669,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -1750,7 +1750,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -1827,7 +1827,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -1908,7 +1908,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -1985,7 +1985,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -2066,7 +2066,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -2143,7 +2143,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -2224,7 +2224,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -2301,7 +2301,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -2382,7 +2382,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -2459,7 +2459,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -2540,7 +2540,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -2617,7 +2617,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -2698,7 +2698,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -2775,7 +2775,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -2969,7 +2969,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -3046,7 +3046,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -3127,7 +3127,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -3204,7 +3204,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -3285,7 +3285,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -3362,7 +3362,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -3443,7 +3443,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -3520,7 +3520,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -3601,7 +3601,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -3678,7 +3678,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -3759,7 +3759,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -3836,7 +3836,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -3917,7 +3917,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -3994,7 +3994,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -4075,7 +4075,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -4152,7 +4152,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -4233,7 +4233,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -4310,7 +4310,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -4391,7 +4391,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -4468,7 +4468,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -4549,7 +4549,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -4626,7 +4626,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -4707,7 +4707,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -4784,7 +4784,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -4865,7 +4865,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -4942,7 +4942,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -5023,7 +5023,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -5100,7 +5100,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -5181,7 +5181,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -5258,7 +5258,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -5339,7 +5339,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -5416,7 +5416,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -5497,7 +5497,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -5574,7 +5574,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -5768,7 +5768,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -5845,7 +5845,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -5926,7 +5926,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -6003,7 +6003,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -6084,7 +6084,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -6161,7 +6161,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -6242,7 +6242,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -6319,7 +6319,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -6400,7 +6400,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -6477,7 +6477,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -6558,7 +6558,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -6635,7 +6635,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -6716,7 +6716,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -6793,7 +6793,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -6874,7 +6874,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -6951,7 +6951,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -7032,7 +7032,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -7109,7 +7109,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -7190,7 +7190,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -7267,7 +7267,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -7348,7 +7348,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -7425,7 +7425,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -7506,7 +7506,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -7583,7 +7583,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -7664,7 +7664,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -7741,7 +7741,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -7822,7 +7822,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -7899,7 +7899,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -7980,7 +7980,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -8057,7 +8057,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -8138,7 +8138,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -8215,7 +8215,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -8296,7 +8296,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -8373,7 +8373,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -8567,7 +8567,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -8644,7 +8644,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -8725,7 +8725,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -8802,7 +8802,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -8883,7 +8883,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -8960,7 +8960,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -9041,7 +9041,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -9118,7 +9118,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -9199,7 +9199,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -9276,7 +9276,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -9357,7 +9357,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -9434,7 +9434,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -9515,7 +9515,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -9592,7 +9592,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -9673,7 +9673,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -9750,7 +9750,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -9831,7 +9831,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -9908,7 +9908,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -9989,7 +9989,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -10066,7 +10066,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -10147,7 +10147,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -10224,7 +10224,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -10305,7 +10305,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -10382,7 +10382,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -10463,7 +10463,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -10540,7 +10540,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -10621,7 +10621,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -10698,7 +10698,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -10779,7 +10779,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -10856,7 +10856,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -10937,7 +10937,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -11014,7 +11014,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -11095,7 +11095,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -11172,7 +11172,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -11366,7 +11366,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -11443,7 +11443,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -11524,7 +11524,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -11601,7 +11601,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -11682,7 +11682,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -11759,7 +11759,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -11840,7 +11840,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -11917,7 +11917,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -11998,7 +11998,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -12075,7 +12075,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -12156,7 +12156,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -12233,7 +12233,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -12314,7 +12314,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -12391,7 +12391,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -12472,7 +12472,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -12549,7 +12549,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -12630,7 +12630,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -12707,7 +12707,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -12788,7 +12788,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -12865,7 +12865,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -12946,7 +12946,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -13023,7 +13023,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -13104,7 +13104,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -13181,7 +13181,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -13262,7 +13262,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -13339,7 +13339,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -13420,7 +13420,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -13497,7 +13497,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -13578,7 +13578,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -13655,7 +13655,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -13736,7 +13736,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -13813,7 +13813,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -13894,7 +13894,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -13971,7 +13971,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -14165,7 +14165,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -14242,7 +14242,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -14323,7 +14323,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -14400,7 +14400,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -14481,7 +14481,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -14558,7 +14558,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -14639,7 +14639,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -14716,7 +14716,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -14797,7 +14797,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -14874,7 +14874,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -14955,7 +14955,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -15032,7 +15032,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -15113,7 +15113,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -15190,7 +15190,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -15271,7 +15271,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -15348,7 +15348,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -15429,7 +15429,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -15506,7 +15506,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -15587,7 +15587,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -15664,7 +15664,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -15745,7 +15745,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -15822,7 +15822,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -15903,7 +15903,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -15980,7 +15980,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -16061,7 +16061,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -16138,7 +16138,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -16219,7 +16219,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -16296,7 +16296,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -16377,7 +16377,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -16454,7 +16454,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -16535,7 +16535,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -16612,7 +16612,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -16693,7 +16693,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -16770,7 +16770,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -16964,7 +16964,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -17041,7 +17041,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -17122,7 +17122,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -17199,7 +17199,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -17280,7 +17280,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -17357,7 +17357,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -17438,7 +17438,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -17515,7 +17515,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -17596,7 +17596,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -17673,7 +17673,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -17754,7 +17754,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -17831,7 +17831,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -17912,7 +17912,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -17989,7 +17989,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -18070,7 +18070,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -18147,7 +18147,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -18228,7 +18228,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -18305,7 +18305,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -18386,7 +18386,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -18463,7 +18463,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -18544,7 +18544,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -18621,7 +18621,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -18702,7 +18702,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -18779,7 +18779,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -18860,7 +18860,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -18937,7 +18937,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -19018,7 +19018,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -19095,7 +19095,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -19176,7 +19176,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -19253,7 +19253,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -19334,7 +19334,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -19411,7 +19411,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -19492,7 +19492,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -19569,7 +19569,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
@@ -19763,7 +19763,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_00/927:d
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'sstex00'
@@ -19840,7 +19840,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_00'
             edit PERTSU '1'
             edit MEMBER '00'
@@ -19921,7 +19921,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_01/927:d
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'sstex01'
@@ -19998,7 +19998,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_01'
             edit PERTSU '1'
             edit MEMBER '01'
@@ -20079,7 +20079,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_02/927:d
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'sstex02'
@@ -20156,7 +20156,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_02'
             edit PERTSU '1'
             edit MEMBER '02'
@@ -20237,7 +20237,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_03/927:d
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'sstex03'
@@ -20314,7 +20314,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_03'
             edit PERTSU '1'
             edit MEMBER '03'
@@ -20395,7 +20395,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_04/927:d
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'sstex04'
@@ -20472,7 +20472,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_04'
             edit PERTSU '1'
             edit MEMBER '04'
@@ -20553,7 +20553,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_05/927:d
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'sstex05'
@@ -20630,7 +20630,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_05'
             edit PERTSU '1'
             edit MEMBER '05'
@@ -20711,7 +20711,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_06/927:d
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'sstex06'
@@ -20788,7 +20788,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_06'
             edit PERTSU '1'
             edit MEMBER '06'
@@ -20869,7 +20869,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_07/927:d
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'sstex07'
@@ -20946,7 +20946,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_07'
             edit PERTSU '1'
             edit MEMBER '07'
@@ -21027,7 +21027,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_08/927:d
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'sstex08'
@@ -21104,7 +21104,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_08'
             edit PERTSU '1'
             edit MEMBER '08'
@@ -21185,7 +21185,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_09/927:d
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'sstex09'
@@ -21262,7 +21262,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_09'
             edit PERTSU '1'
             edit MEMBER '09'
@@ -21343,7 +21343,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_10/927:d
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'sstex10'
@@ -21420,7 +21420,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_10'
             edit PERTSU '1'
             edit MEMBER '10'
@@ -21501,7 +21501,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_11/927:d
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'sstex11'
@@ -21578,7 +21578,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_11'
             edit PERTSU '1'
             edit MEMBER '11'
@@ -21659,7 +21659,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_12/927:d
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'sstex12'
@@ -21736,7 +21736,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_12'
             edit PERTSU '1'
             edit MEMBER '12'
@@ -21817,7 +21817,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_13/927:d
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'sstex13'
@@ -21894,7 +21894,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_13'
             edit PERTSU '1'
             edit MEMBER '13'
@@ -21975,7 +21975,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_14/927:d
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'sstex14'
@@ -22052,7 +22052,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_14'
             edit PERTSU '1'
             edit MEMBER '14'
@@ -22133,7 +22133,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_15/927:d
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'sstex15'
@@ -22210,7 +22210,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_15'
             edit PERTSU '1'
             edit MEMBER '15'
@@ -22291,7 +22291,7 @@ suite claef
             label error ""
           task sstex
             complete :ASSIM == 1 and ../../obs/getobs:obsprog == 0 or :ASSIM == 0
-            trigger :ASSIM == 1 and ../../obs/getobs == complete
+            trigger :ASSIM == 1 and ../../obs/getobs == complete and ../MEM_16/927:d
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'sstex16'
@@ -22368,7 +22368,7 @@ suite claef
             label run ""
             label info ""
           task 001
-            trigger 927 == complete and minim == complete and pertsurf == complete
+            trigger 927 == complete and minim == complete and canari == complete and pertsurf == complete
             edit NAME '001_16'
             edit PERTSU '1'
             edit MEMBER '16'
