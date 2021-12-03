@@ -6,10 +6,10 @@ DESCRIPTION:
     This task cleans the ecflow_server logfile once a month
 
 SOURCE:
-    '~zat2/CLAEF/scripts/cleanlog.ecf'
+    '~zat2/ecf/scripts/cleanlog.ecf'
 
 TRIGGER:
-    date (28th every month) and time (06:00 UTC) dependency
+    date (28th every month) and time (05:00 UTC) dependency
 
 MAIN FRAME:
     ecgate

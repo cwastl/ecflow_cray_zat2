@@ -11,10 +11,10 @@ SOURCE:
    '~zat2/ecf/scripts/001.ecf'
 
 TRIGGER:
-    claef/runs/RUN_[HH]/main/MEM_[MM]/927 == complete
-    claef/runs/RUN_[HH]/main/MEM_[MM]/927surf == complete
-    claef/runs/RUN_[HH]/main/MEM_[MM]/minim == complete
-    claef/runs/RUN_[HH]/main/MEM_[MM]/canari == complete
+    claef/runs/RUN_[HH]/main/MEM_[MM]/927 == complete and
+    claef/runs/RUN_[HH]/main/MEM_[MM]/minim == complete and 
+    claef/runs/RUN_[HH]/main/MEM_[MM]/canari == complete and 
+    claef/runs/RUN_[HH]/main/MEM_[MM]/pertsurf == complete
     
 MAIN FRAME:
     cca/ccb (see variable SCHOST)

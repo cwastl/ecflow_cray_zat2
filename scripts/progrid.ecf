@@ -11,7 +11,7 @@ SOURCE:
     '~zat2/ecf/scripts/progrid.ecf'
 
 TRIGGER:
-    claef/runs/RUN_[HH]/main/MEM_[MM]/001:c
+    claef/runs/RUN_[HH]/main/MEM_[MM]/001:e
 
 COMPLETE:
     :LEAD < :LEADT  !This task is not necessary for short runs

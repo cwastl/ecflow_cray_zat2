@@ -16,6 +16,7 @@ TRIGGER:
 COMPLETE:
     :ASSIM == 0     !run this member without data assimilation
     :ASSIM == 1 and claef/runs/RUN_[HH]/obs/getobs:obsprog == 0    !too less observations available
+    :PERTS == 0
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)

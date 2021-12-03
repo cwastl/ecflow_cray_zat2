@@ -9,7 +9,7 @@ SOURCE:
     '~zat2/ecf/scripts/complete.ecf'
 
 TRIGGER:
-    time dependency (23:30)
+    time dependency (00:30)
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)

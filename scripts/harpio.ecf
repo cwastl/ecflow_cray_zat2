@@ -1,6 +1,6 @@
 %manual
 TASK:
-    claef/runs/RUN_[HH]/main/harpio
+    claef/runs/RUN_[HH]/harp/harpio
 
     [HH]=00,03,06,09,12,15,18,21
 
@@ -12,10 +12,10 @@ SOURCE:
     '~zat2/ecf/scripts/harpio.ecf'
 
 TRIGGER:
-    main == complete
+    HARPI == 1 and ../main == complete
 
 COMPLETE:
-    :LEAD < :LEADT or :HARPIO == 0 !This task is not necessary for short runs
+    :LEAD < :LEADT or :HARPI == 0 !This task is not necessary for short runs
 
 MAIN FRAME:
     ecgate
@@ -68,8 +68,8 @@ tar czvf esuite_${year}_${month}.tar.gz FCTABLE*${year}${month}_${run}.sqlite
 
 ecflow_client --label=info "esuite_${year}_${month}.tar.gz"
 
-(( CHECKTRANS = 1 ))
-(( CHECKTRANSOK = 1 ))
+(( CHECKTRANS = 0 ))
+(( CHECKTRANSOK = 0 ))
 while (( ${CHECKTRANS} < 20 ))
 do
 
@@ -97,6 +97,7 @@ do
 
          sleep 10
 
+         #just for security because of problems with file system at ZAMG
          ectrans -gateway zaaecm99.zamg.ac.at -remote claef_zat -put -source ${OKFILE_E} -target /HARP/CLAEF_ESUITE/${OKFILE_E} -overwrite -verbose -mailto clemens.wastl@zamg.ac.at -onfailure    #just for security because of problems with file system at ZAMG
 
          sleep 10

@@ -1,6 +1,5 @@
 %manual
 TASK:
-    claef/runs/RUN_[HH]/dummy/check_lbc/dummy2
     claef/runs/RUN_[HH]/dummy/check_obs/dummy2
     claef/runs/RUN_[HH]/dummy/check_main/dummy2
 
@@ -15,17 +14,29 @@ SOURCE:
 
 TRIGGER:
     for [HH] == 00:
-       runs at 02:30 or complete when claef/runs/RUN_[HH]/lbc == complete or claef/runs/RUN_[HH]/obs == complete
-       runs at 05:15 or complete when claef/runs/RUN_[HH]/main == complete
+       runs at 02:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 06:00 or complete when claef/runs/RUN_[HH]/main == complete
+    for [HH] == 03:
+       runs at 05:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 08:00 or complete when claef/runs/RUN_[HH]/main == complete
     for [HH] == 06:
-       runs at 08:30 or complete when claef/runs/RUN_[HH]/lbc == complete or claef/runs/RUN_[HH]/obs == complete
-       runs at 11:15 or complete when claef/runs/RUN_[HH]/main == complete
+       runs at 08:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 11:00 or complete when claef/runs/RUN_[HH]/main == complete
+    for [HH] == 09:
+       runs at 11:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 14:00 or complete when claef/runs/RUN_[HH]/main == complete
     for [HH] == 12:
-       runs at 14:30 or complete when claef/runs/RUN_[HH]/lbc == complete or claef/runs/RUN_[HH]/obs == complete
-       runs at 17:15 or complete when claef/runs/RUN_[HH]/main == complete
+       runs at 14:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 18:00 or complete when claef/runs/RUN_[HH]/main == complete
+    for [HH] == 15:
+       runs at 17:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 20:00 or complete when claef/runs/RUN_[HH]/main == complete
     for [HH] == 18:
-       runs at 20:30 or complete when claef/runs/RUN_[HH]/lbc == complete or claef/runs/RUN_[HH]/obs == complete
-       runs at 23:15 or complete when claef/runs/RUN_[HH]/main == complete 
+       runs at 20:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 23:00 or complete when claef/runs/RUN_[HH]/main == complete 
+    for [HH] == 21:
+       runs at 23:30 or complete when claef/runs/RUN_[HH]/obs == complete
+       runs at 00:25 or complete when claef/runs/RUN_[HH]/main == complete 
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)

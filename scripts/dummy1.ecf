@@ -11,7 +11,7 @@ SOURCE:
     '~zat2/ecf/scripts/dummy1.ecf'
 
 TRIGGER:
-    by the ecacesss job ~zat/CLAEF/include/ez_trigger.sh which is triggered by ECMWF LBC availability
+    by the ecacesss job ~zat2/CLAEF/include/ez_trigger.sh which is triggered by ECMWF LBC availability
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)

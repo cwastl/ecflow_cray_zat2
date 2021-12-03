@@ -11,7 +11,7 @@ SOURCE:
     '~zat2/ecf/scripts/sstex.ecf'
 
 TRIGGER:
-    :ASSIM == 1 and claef/runs/RUN_[HH]/main/MEM_[MM]/927:d
+    :ASSIM == 1 and claef/runs/RUN_[HH]/obs/getobs == complete and claef/runs/RUN_[HH]/main/MEM_[MM]/927:d
 
 COMPLETE:
     :ASSIM == 0     !run this member without data assimilation
