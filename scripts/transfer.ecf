@@ -65,8 +65,8 @@ if [ ${mem} == "00" ] ; then
 else
   ADDGRIBOUTS=${ADDGRIBOUTSIZE}
 fi
-(( ADDGRIBOUTS1=${ADDGRIBOUTS}*0.95 ))
-(( ADDGRIBOUTS2=${ADDGRIBOUTS}*1.05 ))
+(( ADDGRIBOUTS1=${ADDGRIBOUTS}*0.97 ))
+(( ADDGRIBOUTS2=${ADDGRIBOUTS}*1.03 ))
 
 
 if [ ${leadtime} -gt ${assimc} ]; then
@@ -88,6 +88,40 @@ if [ ${leadtime} -gt ${assimc} ]; then
      do
 
        INFILE=${ADDGRIBDIR}/CLAEF${mem}+${cstep}:00.grb
+
+       ecflow_client --label=info "Check field number ${cstep}"
+
+       (( stepfail = 0 ))
+       if [ ${mem} == "00" ] ; then
+          ADDGRIBNBR=$ADDGRIBOUTNBRCTL
+       else
+          ADDGRIBNBR=$ADDGRIBOUTNBR
+       fi
+
+       while (( $stepfail < 10 )) ; do
+          if [ $(grib_count ${INFILE}) -ne ${ADDGRIBNBR} ]
+          then
+
+             (( stepfail=${stepfail}+1 ))
+             sleep 10
+
+          else
+
+             (( stepfail = 11 ))
+
+          fi
+       done
+
+       if [ ${stepfail} -eq 10 ]
+       then
+
+          ecflow_client --label=error "Fieldnbr ${cstep} not ok"
+          echo "Fieldnbr not ok" ${cstep}
+          echo "Fehler fieldnbr" ${mem} "+" ${cstep} | mail -s "Fehler addgrib" clemens.wastl@zamg.ac.at
+          exit 1
+
+       fi  
+
        if [ -s ${INFILE} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -gt ${ADDGRIBOUTS1} ] && [ $(/usr/bin/stat --printf="%%s" ${INFILE}) -lt ${ADDGRIBOUTS2} ]; then 
   
          ii=0

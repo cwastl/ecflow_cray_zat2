@@ -35,7 +35,7 @@ suite claef
       edit NAME 'complete'
       label run ""
       label info ""
-      cron 00:30
+      cron 00:20
     family operator
       task switch_schost
         defstatus suspended
@@ -52,7 +52,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20211124 20221231 1
+    repeat date DATUM 20211222 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -145,10 +145,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -2944,10 +2944,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -5743,10 +5743,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -8542,10 +8542,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -11341,10 +11341,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -14140,10 +14140,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -16939,10 +16939,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete
@@ -19686,7 +19686,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 00:25
+            time 00:15
         endfamily
       endfamily
       task cleaning
@@ -19738,10 +19738,10 @@ suite claef
       family main
         edit ASSIM '1'
         edit PERTS '1'
-        edit ARCHIV '1'
+        edit ARCHIV '0'
         edit SEDA '1'
         edit LEADT '48'
-        edit TRANSF '1'
+        edit TRANSF '0'
         family MEM_00
           task 927
             trigger ../../dummy/ez_trigger/dummy1 == complete

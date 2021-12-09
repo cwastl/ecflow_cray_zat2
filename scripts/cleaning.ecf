@@ -59,7 +59,7 @@ if [ -d ${MY_DIR}/DATA/${p3date}/${p3run} ] ; then
       if [ -d ${MY_DIR}/DATA/${p3date}/${p3run}/MEM_${ii} ] ; then
 
          cd ${MY_DIR}/DATA/${p3date}/${p3run}/MEM_${ii}
-         rm -rf 927SURF VARBCCOMB ADDSURF PROGRID SCREENING SSTEX
+         rm -rf 927SURF VARBCCOMB ADDSURF SCREENING SSTEX
       
 #         if [ -d ${MY_DIR}/DATA/${p3date}/${p3run}/MEM_${ii}/001 ] ; then
 # 

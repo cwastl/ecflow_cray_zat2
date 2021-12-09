@@ -65,10 +65,10 @@ stophy = True
 blocks = 6             #block size
 
 #transfer Files to ZAMG
-trans = True
+trans = False
 
 #archive Files to MARS
-arch = True
+arch = False
 
 #run harp
 harpi = False
@@ -85,7 +85,7 @@ logport = 38776;
 
 # main runs time schedule
 timing = {
-  'comp' : '00:30',
+  'comp' : '00:20',
   'clean' : '05:00',
   'o00_1' : '0145',
   'o00_2' : '0155',
@@ -118,7 +118,7 @@ timing = {
   'c18_1' : '20:30',
   'c18_2' : '23:00',
   'c21_1' : '23:30',
-  'c21_2' : '00:25',
+  'c21_2' : '00:15',
 }
 
 # debug mode (1 - yes, 0 - no)
@@ -772,7 +772,6 @@ defs = Defs().add(
                    family_cleaning(),
                    family_obs(timing['o06_1'],timing['o06_2']),
                    family_main(),
-#                   family_mirror(),
                    family_harp(),
                 ),
 
@@ -789,13 +788,12 @@ defs = Defs().add(
 
                 Family("RUN_12",
                    Edit( LAUF='12',VORHI=6, LEAD=assimc, LEADCTL=assimc ),
-   
+
                    # add suite Families and Tasks
                    family_dummy(timing['c12_1'],timing['c12_2']),
                    family_cleaning(),
                    family_obs(timing['o12_1'],timing['o12_2']),
                    family_main(),
-#                   family_mirror(),
                    family_harp(),
                 ),
 
@@ -812,13 +810,12 @@ defs = Defs().add(
 
                 Family("RUN_18",
                    Edit( LAUF='18',VORHI=6, LEAD=assimc, LEADCTL=assimc ),
- 
+
                    # add suite Families and Tasks
                    family_dummy(timing['c18_1'],timing['c18_2']),
                    family_cleaning(),
                    family_obs(timing['o18_1'],timing['o18_2']),
                    family_main(),
-#                   family_mirror(),
                    family_harp(),
                ),
 
