@@ -15,14 +15,14 @@ TRIGGER:
 
 COMPLETE:
     :ASSIM == 0     !run this member without data assimilation
-    :ASSIM == 1 and claef/runs/RUN_[HH]/obs/getobs:obsprog == 0    !too less observations available
+    :ASSIM == 1 and claef/RUN_[HH]/obs/getobs:obsprog == 0    !too less observations available
 
 MAIN FRAME:
     cca/ccb (see variable SCHOST)
 
 OPERATOR:
     - If this task fails, rerun the task
-    - If failure persists, set task == complete and set claef/runs/RUN_[HH]/main/MEM_[MM]/canari == complete (run without surface assimilation)
+    - If failure persists, set task == complete and set claef/RUN_[HH]/main/MEM_[MM]/canari == complete (run without surface assimilation)
     - Please report the error:
       Every day between 6-20 UTC please call:
       1.) +436648409158, Mr. Clemens Wastl
@@ -138,8 +138,8 @@ export ODB_CCMA_POOLMASK_FILE=$ODB_DATAPATH_CCMA/CCMA.poolmask
 export ODB_MERGEODB_DIRECT=1
 export ODB_CCMA_CREATE_DIRECT=0
 export ODB_CCMA_TSLOTS=0
-export ODB_CCMA_LEFT_MARGIN=-180
-export ODB_CCMA_RIGHT_MARGIN=180
+export ODB_CCMA_LEFT_MARGIN=-90
+export ODB_CCMA_RIGHT_MARGIN=90
 export ODB_CMA=ECMA
 
 export ODB_SRCPATH_RSTBIAS=$RUNDIR/RSTBIAS
