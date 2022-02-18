@@ -30,18 +30,23 @@ assimc=%ASSIMC%
 files=%STHOST%
 user=zat
 
-if [[ ${mem} == "00" ]]
-then
-   leadtime=%LEADCTL%
-else
-   leadtime=%LEAD%
-fi
-
 if [ -f /sc1/tcwork/zat2/lb/CLAEF/ARCHIV/archiv.txt ]
 then
 
    date=$(cat -n /sc1/tcwork/zat2/lb/CLAEF/ARCHIV/archiv.txt | awk 'NR>0 && NR<2 {print $2}')
    run=$(cat -n /sc1/tcwork/zat2/lb/CLAEF/ARCHIV/archiv.txt | awk 'NR>0 && NR<2 {print $3}')
+
+   if [[ ${run} == "00" ]]
+   then
+      leadtime=60
+   else
+      leadtime=48
+   fi
+
+   if [[ ${mem} == "00" ]]
+   then
+      leadtime=%LEADCTL%
+   fi
 
    # report to ecflow
    ecflow_client --label=run "The date is now ${date} ${run}"
