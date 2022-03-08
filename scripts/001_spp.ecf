@@ -196,15 +196,6 @@ do
 
     ln -sf ${NAMELS1} ${RUNDIR}/xxt$cact_step
 
-    if [[ "$cact_step_hh" == "00" ]]
-    then
-
-      grep -v $RUNDIR/CLCFU xxt00000000  >  $RUNDIR/xxt00000000_
-      grep -v $RUNDIR/CLDCFU xxt00000000_ > $RUNDIR/xxt00000000__
-      rename  $RUNDIR/xxt00000000__  $RUNDIR/xxt00000000 $RUNDIR/xxt00000000__
-
-    fi
-
   else
 
     ln -sf ${NAMELSELECT15} $RUNDIR/xxt$cact_step

@@ -196,15 +196,6 @@ do
 
     ln -sf ${NAMELS1} ${RUNDIR}/xxt$cact_step
 
-    if [[ "$cact_step_hh" == "00" ]]
-    then
-
-      grep -v $RUNDIR/CLCFU xxt00000000  >  $RUNDIR/xxt00000000_
-      grep -v $RUNDIR/CLDCFU xxt00000000_ > $RUNDIR/xxt00000000__
-      rename  $RUNDIR/xxt00000000__  $RUNDIR/xxt00000000 $RUNDIR/xxt00000000__
-
-    fi
-
   else
 
     ln -sf ${NAMELSELECT15} $RUNDIR/xxt$cact_step
@@ -238,7 +229,7 @@ then
       -e   "s/NSEED_SDT=60/NSEED_SDT=${seedm}/"\
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
-      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg > $RUNDIR/fort.4
+      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg_ice4 > $RUNDIR/fort.4
 
 else
 
@@ -275,7 +266,7 @@ else
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/SLHDEPSH=0.040/SLHDEPSH=${AT2}/"\
-      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg > $RUNDIR/fort.4
+      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg_ice4 > $RUNDIR/fort.4
 
 fi  
 
@@ -293,14 +284,14 @@ ecflow_client --event=e
 
 rename NODE.001_01 ${LOGDIR}/NODE.001_%ECF_TRYNO%_${mem} NODE.001_01
 
-ii=0                        #For B-Matrix calculation
-mkdir -p /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}
-while [ $ii -le ${assimc} ]
-do
-   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
-   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
-   let "ii = $ii + 3"
-done
+#ii=0                        #For B-Matrix calculation
+#mkdir -p /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}
+#while [ $ii -le ${assimc} ]
+#do
+#   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
+#   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
+#   let "ii = $ii + 3"
+#done
 
 ii=0                       #For assimilation cycle
 while [ $ii -le ${leadtime} ]
@@ -317,7 +308,7 @@ do
 done
 
 #rename PF ${C001DIR}/PF PF${EXP}${EXP}+*
-cp PF${EXP}${EXP}+* ${C001DIR}
+#cp PF${EXP}${EXP}+* ${C001DIR}
 
 cd ${C001DIR}
 
