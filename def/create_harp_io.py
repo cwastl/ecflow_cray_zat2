@@ -37,10 +37,10 @@ members = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 #members = [0,1]
 
 # forecasting range
-fcst = 48
+fcst =60 
 
 # forecasting range control member
-fcstctl = 48
+fcstctl = 60 
 
 # harp parameter
 tasks_harp_param = ["T2m","rhum2m","u10m", "v10m","AccPcp3h","msl","grad","totcc","wgust"]
@@ -76,18 +76,26 @@ logport = 38776;
 timing = {
   'comp' : '00:30',
   'clean' : '05:00',
-  'ho00_1' : '0910',
-  'ho00_2' : '1130',
-  'he00_1' : '1210',
-  'he00_2' : '1425',
-  'ho12_1' : '2110',
-  'ho12_2' : '2335',
+  'ho00_1' : '0710',
+  'ho00_2' : '0930',
+  'he00_1' : '0810',
+  'he00_2' : '1030',
+  'he06_1' : '1410',
+  'he06_2' : '1630',
+  'ho12_1' : '2010',
+  'ho12_2' : '2230',
+  'he12_1' : '2110',
+  'he12_2' : '2335',
   'co00_1' : '12:30',
   'co00_2' : '12:35',
-  'ce00_1' : '14:30',
-  'ce00_2' : '14:35',
+  'ce00_1' : '12:30',
+  'ce00_2' : '12:35',
+  'ce06_1' : '18:30',
+  'ce06_2' : '18:35',
   'co12_1' : '23:30',
   'co12_2' : '23:50',
+  'ce12_1' : '23:30',
+  'ce12_2' : '23:50',
 }
 #
 ## debug mode (1 - yes, 0 - no)
@@ -98,7 +106,7 @@ anzmem = len(members)
 # date to start the suite
 start_date = int(now.strftime('%Y%m%d'))
 #start_date = 20190415
-end_date = 20221231
+end_date = 20530315
 
 ###########################################
 #####define Families and Tasks#############
@@ -331,12 +339,21 @@ defs = Defs().add(
 
                    # add suite Families and Tasks
                    family_dummy(timing['co00_1'],timing['co00_2'],'oper'),
-                   family_dummy(timing['ce00_1'],timing['ce00_2'],'esuite'),
                    family_harp(timing['ho00_1'],timing['ho00_2'], 'oper'),
-                   family_harp(timing['he00_1'],timing['he00_2'], 'esuite'),
                    family_transfer('oper'),
+                   family_dummy(timing['ce00_1'],timing['ce00_2'],'esuite'),
+                   family_harp(timing['he00_1'],timing['he00_2'], 'esuite'),
                    family_transfer('esuite'),
                 ),
+
+#                Family("RUN_06",
+#                   Edit( LAUF='06', VORHI=6, LEAD=fcst),
+#
+#                   # add suite Families and Tasks
+#                   family_dummy(timing['ce06_1'],timing['ce06_2'],'esuite'),
+#                   family_harp(timing['he06_1'],timing['he06_2'], 'esuite'),
+#                   family_transfer('esuite'),
+#                ),
 
                 Family("RUN_12",
                    Edit( LAUF='12', VORHI=6, LEAD=fcst),
@@ -345,6 +362,9 @@ defs = Defs().add(
                    family_dummy(timing['co12_1'],timing['co12_2'], 'oper'),
                    family_harp(timing['ho12_1'],timing['ho12_2'], 'oper'),
                    family_transfer('oper'),
+                   family_dummy(timing['ce12_1'],timing['ce12_2'], 'esuite'),
+                   family_harp(timing['he12_1'],timing['he12_2'], 'esuite'),
+                   family_transfer('esuite'),
                 )
             )
          )

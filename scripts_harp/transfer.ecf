@@ -144,4 +144,23 @@ else
       
 fi
 
+#LEAD=0
+#echo ${date}${run} > CLAEF_ESUITE.ok 
+#if [[ %MODE% = "oper" ]]
+#then
+#
+#    while [[ ${LEAD} -le 60 ]]
+#    do
+#
+#       cstep=$(printf "%%02d" ${LEAD})
+#       ectrans -gateway zaaecm99.zamg.ac.at -remote nwpmodelle -put -source /scratch/ms/at/zat2/CLAEF/00_esuite/MEM_00/CLAEF00+00${cstep}:00.grb -target /../../CLAEF_ESUITE/PRODUCTION/GRIB/00/ -overwrite -verbose -mailto clemens.wastl@zamg.ac.at -onfailure
+#       (( LEAD = ${LEAD} + 1 ))
+#
+#    done
+#
+#    ectrans -gateway zaaecm99.zamg.ac.at -remote nwpmodelle -put -source CLAEF_ESUITE.ok -target /../../CLAEF_ESUITE/PRODUCTION/GRIB/00/ -overwrite -verbose -mailto clemens.wastl@zamg.ac.at -onfailure
+# 
+#    rm -f CLAEF_ESUITE.ok
+#  
+#fi
 %include <tail.h>

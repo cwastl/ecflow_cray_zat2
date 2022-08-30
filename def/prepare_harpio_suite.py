@@ -4,7 +4,7 @@ import os
 import itertools
 
 suite = "harp_io"
-runs = ["00", "12"]
+runs = ["00", "06", "12"]
 ofamil = ["admin","runs"]
 tasks_comp = ["complete"]
 #famil = ["harp"]

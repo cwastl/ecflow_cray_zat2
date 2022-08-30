@@ -45,6 +45,12 @@ run=%LAUF%
 user=%USER%
 leadtime=%LEAD%
 modus=%MODE%
+
+if [[ %MODE% == "esuite" ]]
+then
+   leadtime=48
+fi
+
 #param=PARAM
 
 set +e

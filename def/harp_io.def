@@ -26,7 +26,7 @@ suite harp_io
       cron 00:30
   endfamily
   family runs
-    repeat date DATUM 20211105 20221231 1
+    repeat date DATUM 20220719 20530315 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -37,7 +37,7 @@ suite harp_io
     family RUN_00
       edit VORHI '6'
       edit LAUF '00'
-      edit LEAD '48'
+      edit LEAD '60'
       family check_harpio_oper
         task dummy2
           complete ../harpio_oper == complete
@@ -48,20 +48,10 @@ suite harp_io
           label error ""
           time 12:30
       endfamily
-      family check_harpio_esuite
-        task dummy2
-          complete ../harpio_esuite == complete
-          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/ecf.out'
-          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
-          edit NAME 'dummy2'
-          label run ""
-          label error ""
-          time 14:30
-      endfamily
       family harpio_oper
-        trigger /harp_io:TIME > 0910 and /harp_io:TIME < 1130
+        trigger /harp_io:TIME > 0710 and /harp_io:TIME < 0930
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
+        edit LEADT '60'
         edit MODE 'oper'
         edit HARPI '1'
         inlimit harp_limit
@@ -216,10 +206,27 @@ suite harp_io
           label run ""
           label info ""
       endfamily
+      task transfer_oper
+        trigger harpio_oper == complete
+        edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/transfer_oper.out'
+        edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+        edit MODE 'oper'
+        label run ""
+        label info ""
+      family check_harpio_esuite
+        task dummy2
+          complete ../harpio_esuite == complete
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'dummy2'
+          label run ""
+          label error ""
+          time 12:30
+      endfamily
       family harpio_esuite
-        trigger /harp_io:TIME > 1210 and /harp_io:TIME < 1425
+        trigger /harp_io:TIME > 0810 and /harp_io:TIME < 1030
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
+        edit LEADT '60'
         edit MODE 'esuite'
         edit HARPI '1'
         inlimit harp_limit
@@ -374,13 +381,6 @@ suite harp_io
           label run ""
           label info ""
       endfamily
-      task transfer_oper
-        trigger harpio_oper == complete
-        edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/transfer_oper.out'
-        edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
-        edit MODE 'oper'
-        label run ""
-        label info ""
       task transfer_esuite
         trigger harpio_esuite == complete
         edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/transfer_esuite.out'
@@ -392,7 +392,7 @@ suite harp_io
     family RUN_12
       edit VORHI '6'
       edit LAUF '12'
-      edit LEAD '48'
+      edit LEAD '60'
       family check_harpio_oper
         task dummy2
           complete ../harpio_oper == complete
@@ -404,9 +404,9 @@ suite harp_io
           time 23:30
       endfamily
       family harpio_oper
-        trigger /harp_io:TIME > 2110 and /harp_io:TIME < 2335
+        trigger /harp_io:TIME > 2010 and /harp_io:TIME < 2230
         edit ACCOUNT 'ata01'
-        edit LEADT '48'
+        edit LEADT '60'
         edit MODE 'oper'
         edit HARPI '1'
         inlimit harp_limit
@@ -566,6 +566,181 @@ suite harp_io
         edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/transfer_oper.out'
         edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
         edit MODE 'oper'
+        label run ""
+        label info ""
+      family check_harpio_esuite
+        task dummy2
+          complete ../harpio_esuite == complete
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/ecf.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit NAME 'dummy2'
+          label run ""
+          label error ""
+          time 23:30
+      endfamily
+      family harpio_esuite
+        trigger /harp_io:TIME > 2110 and /harp_io:TIME < 2335
+        edit ACCOUNT 'ata01'
+        edit LEADT '60'
+        edit MODE 'esuite'
+        edit HARPI '1'
+        inlimit harp_limit
+        task harpio_T2m
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T2m_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T2m'
+          label run ""
+          label info ""
+        task harpio_rhum2m
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum2m_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum2m'
+          label run ""
+          label info ""
+        task harpio_u10m
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_u10m_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'u10m'
+          label run ""
+          label info ""
+        task harpio_v10m
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_v10m_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'v10m'
+          label run ""
+          label info ""
+        task harpio_AccPcp3h
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_AccPcp3h_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'AccPcp3h'
+          label run ""
+          label info ""
+        task harpio_msl
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_msl_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'msl'
+          label run ""
+          label info ""
+        task harpio_grad
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_grad_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'grad'
+          label run ""
+          label info ""
+        task harpio_totcc
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_totcc_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'totcc'
+          label run ""
+          label info ""
+        task harpio_wgust
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_wgust_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'wgust'
+          label run ""
+          label info ""
+        task harpio_T500
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T500_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T500'
+          label run ""
+          label info ""
+        task harpio_T700
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T700_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T700'
+          label run ""
+          label info ""
+        task harpio_T850
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T850_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T850'
+          label run ""
+          label info ""
+        task harpio_T900
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T900_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T900'
+          label run ""
+          label info ""
+        task harpio_T1000
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_T1000_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'T1000'
+          label run ""
+          label info ""
+        task harpio_rhum500
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum500_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum500'
+          label run ""
+          label info ""
+        task harpio_rhum700
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum700_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum700'
+          label run ""
+          label info ""
+        task harpio_rhum850
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum850_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum850'
+          label run ""
+          label info ""
+        task harpio_rhum900
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum900_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum900'
+          label run ""
+          label info ""
+        task harpio_rhum1000
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_rhum1000_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'rhum1000'
+          label run ""
+          label info ""
+        task harpio_u700
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_u700_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'u700'
+          label run ""
+          label info ""
+        task harpio_u850
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_u850_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'u850'
+          label run ""
+          label info ""
+        task harpio_u1000
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_u1000_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'u1000'
+          label run ""
+          label info ""
+        task harpio_v700
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_v700_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'v700'
+          label run ""
+          label info ""
+        task harpio_v850
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_v850_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'v850'
+          label run ""
+          label info ""
+        task harpio_v1000
+          edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/harp_v1000_esuite.out'
+          edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+          edit PARAM 'v1000'
+          label run ""
+          label info ""
+      endfamily
+      task transfer_esuite
+        trigger harpio_esuite == complete
+        edit ECF_JOBOUT '/scratch/ms/at/zat2/CLAEF/HARP/log_ecf/transfer_esuite.out'
+        edit ECF_JOB_CMD '/usr/local/apps/schedule/1.4/bin/schedule zat2 ecgb %ECF_JOB% %ECF_JOBOUT%'
+        edit MODE 'esuite'
         label run ""
         label info ""
     endfamily
