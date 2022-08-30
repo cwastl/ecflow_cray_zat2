@@ -226,10 +226,9 @@ then
       -e   "s/LSPP=.TRUE./LSPP=.FALSE./"\
       -e   "s/{couplfreq}/${couplfr_s}/"\
       -e   "s/{inhydro}/${INHYDRO}/"\
-      -e   "s/NSEED_SDT=60/NSEED_SDT=${seedm}/"\
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
-      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg_ice4 > $RUNDIR/fort.4
+      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg > $RUNDIR/fort.4
 
 else
 
@@ -263,10 +262,11 @@ else
       -e   "s/{inhydro}/${INHYDRO}/"\
       -e   "s/LSPSDT=.TRUE./LSPSDT=.FALSE./"\
       -e   "s/NSEED_SDT=60/NSEED_SDT=${seedm}/"\
+      -e   "s/NENSFNB=0/NENSFNB=${seedm}/"\
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/SLHDEPSH=0.040/SLHDEPSH=${AT2}/"\
-      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg_ice4 > $RUNDIR/fort.4
+      -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg > $RUNDIR/fort.4
 
 fi  
 
@@ -308,7 +308,7 @@ do
 done
 
 #rename PF ${C001DIR}/PF PF${EXP}${EXP}+*
-#cp PF${EXP}${EXP}+* ${C001DIR}
+cp PF${EXP}${EXP}+* ${C001DIR}
 
 cd ${C001DIR}
 

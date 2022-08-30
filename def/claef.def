@@ -52,7 +52,7 @@ suite claef
     endfamily
   endfamily
   family runs
-    repeat date DATUM 20211222 20221231 1
+    repeat date DATUM 20220510 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -83,7 +83,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 02:30
+            time 03:30
         endfamily
         family check_main
           task dummy2
@@ -93,7 +93,7 @@ suite claef
             edit CLASS 'ts'
             label run ""
             label error ""
-            time 06:00
+            time 07:00
         endfamily
       endfamily
       task cleaning

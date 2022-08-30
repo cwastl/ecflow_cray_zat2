@@ -148,10 +148,10 @@ else
    ecflow_client --label=info "no observations at all, assim=0"
 fi
 
-!if [[ ${run} == "00"  || ${run} == "12" ]]
-!then
-!   sleep 1h
-!fi
+if [[ ${run} == "00" ]]
+then
+   sleep 1h
+fi
 
 ecflow_client --meter=obsprog ${TRANSOK} 
 

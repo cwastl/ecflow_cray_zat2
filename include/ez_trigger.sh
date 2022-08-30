@@ -31,7 +31,7 @@ fi
 HRJ2=$(printf "%02d" $HRUN2)
 
 # Set task complete for ecFlow
-module load ecflow
+module load ecflow/5.7.0
 export ECF_HOST=ecgate
 export ECF_PORT=5276
 suiteName='claef'

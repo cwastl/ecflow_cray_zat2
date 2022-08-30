@@ -226,7 +226,6 @@ then
       -e   "s/LSPP=.TRUE./LSPP=.FALSE./"\
       -e   "s/{couplfreq}/${couplfr_s}/"\
       -e   "s/{inhydro}/${INHYDRO}/"\
-      -e   "s/NSEED_SDT=60/NSEED_SDT=${seedm}/"\
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/{fcstrange}/${leadtime}/g" ${NAMEL001}_spp+spg > $RUNDIR/fort.4
@@ -263,6 +262,7 @@ else
       -e   "s/{inhydro}/${INHYDRO}/"\
       -e   "s/LSPSDT=.TRUE./LSPSDT=.FALSE./"\
       -e   "s/NSEED_SDT=60/NSEED_SDT=${seedm}/"\
+      -e   "s/NENSFNB=0/NENSFNB=${seedm}/"\
       -e   "s/NFRPOS=60,/NFRPOS=${steps},/"\
       -e   "s/ ! CNPPATH='.',/  CNPPATH='.',/"\
       -e   "s/SLHDEPSH=0.040/SLHDEPSH=${AT2}/"\
@@ -284,14 +284,14 @@ ecflow_client --event=e
 
 rename NODE.001_01 ${LOGDIR}/NODE.001_%ECF_TRYNO%_${mem} NODE.001_01
 
-ii=0                        #For B-Matrix calculation
-mkdir -p /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}
-while [ $ii -le ${assimc} ]
-do
-   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
-   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
-   let "ii = $ii + 3"
-done
+#ii=0                        #For B-Matrix calculation
+#mkdir -p /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}
+#while [ $ii -le ${assimc} ]
+#do
+#   cp ICMSH${EXP}+000${ii}:00 /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}
+#   cp ICMSH${EXP}+000${ii}:00.sfx /sc1/tcwork/${user}/lb/CLAEF/BMATRIX_cy43/${date}/${run}/MEM_${mem}/ICMSH${EXP}+000${ii}.sfx
+#   let "ii = $ii + 3"
+#done
 
 ii=0                       #For assimilation cycle
 while [ $ii -le ${leadtime} ]
