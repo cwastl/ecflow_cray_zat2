@@ -98,6 +98,21 @@ def family_main(starttime1,starttime2):
    return Family("main",
       Trigger("/wasarchiv:TIME > {} and /wasarchiv:TIME < {}".format(starttime1,starttime2)),
 
+      # Fetch trigger file
+      [
+         Task("gettrig",
+            Edit(
+               NP=1,
+               CLASS='ns',
+               NAME="gettrig",
+            ),
+            Label("run", ""),
+            Label("info", ""),
+            Label("error", "")
+         )
+      ],
+
+
       # Family MEMBER
       [
          Family("MEM_{:02d}".format(mem),
@@ -105,6 +120,7 @@ def family_main(starttime1,starttime2):
             # Task copy to sc1
             [
                Task("copy",
+                  Trigger("../gettrig == complete"),
                   Edit(
                      MEMBER="{:02d}".format(mem),
                      NP=1,

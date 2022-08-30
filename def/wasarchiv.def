@@ -27,7 +27,7 @@ suite wasarchiv
       cron 01:40
   endfamily
   family runs
-    repeat date DATUM 20220209 20221231 1
+    repeat date DATUM 20220503 20221231 1
     task dummy
       defstatus suspended
       edit NP '1'
@@ -42,8 +42,16 @@ suite wasarchiv
       edit LEAD '60'
       family main
         trigger /wasarchiv:TIME > 0800 and /wasarchiv:TIME < 0900
+        task gettrig
+          edit NP '1'
+          edit NAME 'gettrig'
+          edit CLASS 'ns'
+          label run ""
+          label info ""
+          label error ""
         family MEM_00
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'copy_00'
@@ -63,6 +71,7 @@ suite wasarchiv
         endfamily
         family MEM_01
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'copy_01'
@@ -82,6 +91,7 @@ suite wasarchiv
         endfamily
         family MEM_02
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'copy_02'
@@ -101,6 +111,7 @@ suite wasarchiv
         endfamily
         family MEM_03
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'copy_03'
@@ -120,6 +131,7 @@ suite wasarchiv
         endfamily
         family MEM_04
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'copy_04'
@@ -139,6 +151,7 @@ suite wasarchiv
         endfamily
         family MEM_05
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'copy_05'
@@ -158,6 +171,7 @@ suite wasarchiv
         endfamily
         family MEM_06
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'copy_06'
@@ -177,6 +191,7 @@ suite wasarchiv
         endfamily
         family MEM_07
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'copy_07'
@@ -196,6 +211,7 @@ suite wasarchiv
         endfamily
         family MEM_08
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'copy_08'
@@ -215,6 +231,7 @@ suite wasarchiv
         endfamily
         family MEM_09
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'copy_09'
@@ -234,6 +251,7 @@ suite wasarchiv
         endfamily
         family MEM_10
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'copy_10'
@@ -253,6 +271,7 @@ suite wasarchiv
         endfamily
         family MEM_11
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'copy_11'
@@ -272,6 +291,7 @@ suite wasarchiv
         endfamily
         family MEM_12
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'copy_12'
@@ -291,6 +311,7 @@ suite wasarchiv
         endfamily
         family MEM_13
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'copy_13'
@@ -310,6 +331,7 @@ suite wasarchiv
         endfamily
         family MEM_14
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'copy_14'
@@ -329,6 +351,7 @@ suite wasarchiv
         endfamily
         family MEM_15
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'copy_15'
@@ -348,6 +371,7 @@ suite wasarchiv
         endfamily
         family MEM_16
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'copy_16'
@@ -381,8 +405,16 @@ suite wasarchiv
       edit LEAD '48'
       family main
         trigger /wasarchiv:TIME > 2000 and /wasarchiv:TIME < 2100
+        task gettrig
+          edit NP '1'
+          edit NAME 'gettrig'
+          edit CLASS 'ns'
+          label run ""
+          label info ""
+          label error ""
         family MEM_00
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '00'
             edit NAME 'copy_00'
@@ -402,6 +434,7 @@ suite wasarchiv
         endfamily
         family MEM_01
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '01'
             edit NAME 'copy_01'
@@ -421,6 +454,7 @@ suite wasarchiv
         endfamily
         family MEM_02
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '02'
             edit NAME 'copy_02'
@@ -440,6 +474,7 @@ suite wasarchiv
         endfamily
         family MEM_03
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '03'
             edit NAME 'copy_03'
@@ -459,6 +494,7 @@ suite wasarchiv
         endfamily
         family MEM_04
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '04'
             edit NAME 'copy_04'
@@ -478,6 +514,7 @@ suite wasarchiv
         endfamily
         family MEM_05
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '05'
             edit NAME 'copy_05'
@@ -497,6 +534,7 @@ suite wasarchiv
         endfamily
         family MEM_06
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '06'
             edit NAME 'copy_06'
@@ -516,6 +554,7 @@ suite wasarchiv
         endfamily
         family MEM_07
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '07'
             edit NAME 'copy_07'
@@ -535,6 +574,7 @@ suite wasarchiv
         endfamily
         family MEM_08
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '08'
             edit NAME 'copy_08'
@@ -554,6 +594,7 @@ suite wasarchiv
         endfamily
         family MEM_09
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '09'
             edit NAME 'copy_09'
@@ -573,6 +614,7 @@ suite wasarchiv
         endfamily
         family MEM_10
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '10'
             edit NAME 'copy_10'
@@ -592,6 +634,7 @@ suite wasarchiv
         endfamily
         family MEM_11
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '11'
             edit NAME 'copy_11'
@@ -611,6 +654,7 @@ suite wasarchiv
         endfamily
         family MEM_12
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '12'
             edit NAME 'copy_12'
@@ -630,6 +674,7 @@ suite wasarchiv
         endfamily
         family MEM_13
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '13'
             edit NAME 'copy_13'
@@ -649,6 +694,7 @@ suite wasarchiv
         endfamily
         family MEM_14
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '14'
             edit NAME 'copy_14'
@@ -668,6 +714,7 @@ suite wasarchiv
         endfamily
         family MEM_15
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '15'
             edit NAME 'copy_15'
@@ -687,6 +734,7 @@ suite wasarchiv
         endfamily
         family MEM_16
           task copy
+            trigger ../gettrig == complete
             edit NP '1'
             edit MEMBER '16'
             edit NAME 'copy_16'

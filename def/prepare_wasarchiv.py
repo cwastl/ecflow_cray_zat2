@@ -9,6 +9,7 @@ famil = ["main"]
 members = ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16"]
 tasks_comp = ["complete"]
 tasks_clean = ["cleaning"]
+tasks_trig = ["gettrig"]
 tasks_main = ["copy","mv2ecfs"]
 
 hpath="/home/ms/at/zat2/ecf/"
@@ -53,6 +54,11 @@ for s in ofamil:
                  os.mkdir("RUN_" + r + "/" + f)
 
               if f == "main":
+
+                 for z in tasks_trig:
+
+                    if not os.path.lexists("RUN_" + r + "/" + f + "/" + z + ".ecf"):
+                      os.symlink(hpath + "scripts_wasarchiv/" + z + ".ecf", "RUN_" + r + "/" + f + "/" + z + ".ecf")
 
                  for m in members:
 
